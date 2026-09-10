@@ -1,0 +1,10 @@
+[FalconModelT] Loading model variables from \\wsl.localhost\ubuntu\home\satyam\ROHMPC-State-Dependent-Uncertainty\src\catkin_ws\src\mpc_model_id_mismatch\data\model_mismatch_results\falcon_t.mat.mat in class FalconModelT
+Observer rates [original dense random]: [0.54847171 0.54847171 0.61437737]
+Controller rates [original dense random]: [1.3022542 1.3022542 1.3023419]
+Chosen rho_o=0.521048 rho_c=1.23714 gamma=6.5 velocity_gain=3.49395
+Forcing acceleration=0.00916011 other=0.0195965 noise=0.0263274
+Global comparison r=0.105718; original SDP epsilon=0.0744264 (different constructions)
+End dynamic r=0.0979251 s=0.535803; global r=0.105718 s=0.576727
+AUDIT_AND_ENVELOPE_TESTS_PASSED
+FINITE_POINT_AUDIT_ONLY: continuous-domain contraction coverage not proved
+OUTPUT=\\wsl.localhost\ubuntu\home\satyam\ROHMPC-State-Dependent-Uncertainty\research\state_dependent_bounds\results\20260910_211238

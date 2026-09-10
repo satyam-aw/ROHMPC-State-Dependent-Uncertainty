@@ -1,0 +1,8 @@
+lambda=0.497029 epsilon=0.07442638619 global_q=0.002753187883 recovered_epsilon=0.07442638619
+Wxx condition=3474.67 g1=0.00148773 gbeta=0.00104178 saving=0.000441487 q(beta)=0.0023117
+LMI residuals: process=5.50832e-08 noise=5.57035e-08 dynamics=5.45468e-08 tracking=-0.0030671; saved tolerance=1e-06
+Local Schur residual=5.63813e-08; nonlinear excess=-0.00229595 (1968 samples)
+FINAL r_local=0.06945456129 epsilon=0.07442638619 improvement_percent=6.68019
+FINAL s_local=0.367532 s_global=0.392384
+BASELINE_RECOVERY_AND_LOCAL_ENVELOPE_TESTS_PASSED
+OUTPUT=\\wsl.localhost\ubuntu\home\satyam\ROHMPC-State-Dependent-Uncertainty\research\state_dependent_bounds\results\lmi_20260910_222354
