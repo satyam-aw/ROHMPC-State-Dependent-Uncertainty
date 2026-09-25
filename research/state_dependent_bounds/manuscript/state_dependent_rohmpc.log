@@ -1,10 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.9.23)  23 SEP 2026 17:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.9.23)  25 SEP 2026 09:49
 entering extended mode
- \write18 enabled.
- file:line:error style messages enabled.
+ restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/satyam/ROHMPC-State-Dependent-Uncertainty/research/state_dependent_bounds/manuscript/state_dependent_rohmpc.tex
-(/home/satyam/ROHMPC-State-Dependent-Uncertainty/research/state_dependent_bounds/manuscript/state_dependent_rohmpc.tex
+**./state_dependent_rohmpc.tex
+(state_dependent_rohmpc.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
 (/home/satyam/.miktex/texmfs/install/tex/latex/base/article.cls
@@ -23,14 +22,18 @@ File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen150
-) (/home/satyam/.miktex/texmfs/install/tex/latex/geometry/geometry.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/geometry/geometry.sty
 Package: geometry 2026/03/07 v6.0 Page Geometry
- (/home/satyam/.miktex/texmfs/install/tex/latex/graphics/keyval.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
-) (/home/satyam/.miktex/texmfs/install/tex/generic/iftex/ifvtex.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
- (/home/satyam/.miktex/texmfs/install/tex/generic/iftex/iftex.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
 \Gm@cnth=\count283
@@ -45,21 +48,26 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 \Gm@layouthoffset=\dimen157
 \Gm@layoutvoffset=\dimen158
 \Gm@dimlist=\toks18
- (/home/satyam/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg)) (/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsmath.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg))
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
 (/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
- (/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsgen.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks19
 \ex@=\dimen159
-)) (/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsbsy.sty
+))
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen160
-) (/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsopn.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count286
@@ -109,16 +117,19 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \mathdisplay@stack=\toks23
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
-) (/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/amssymb.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
- (/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/amsfonts.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (/usr/local/share/miktex-texmf/tex/latex/amscls/amsthm.sty
+))
+(/usr/local/share/miktex-texmf/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks24
 \thm@bodyfont=\toks25
@@ -129,9 +140,11 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@postskip=\skip55
 \thm@headsep=\skip56
 \dth@everypar=\toks29
-) (/usr/local/share/miktex-texmf/tex/latex/mathtools/mathtools.sty
+)
+(/usr/local/share/miktex-texmf/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
- (/home/satyam/.miktex/texmfs/install/tex/latex/tools/calc.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/tools/calc.sty
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
 \calc@Acount=\count298
 \calc@Bcount=\count299
@@ -143,7 +156,8 @@ LaTeX Info: Redefining \setlength on input line 86.
 LaTeX Info: Redefining \addtolength on input line 87.
 \calc@Ccount=\count300
 \calc@Cskip=\skip59
-) (/usr/local/share/miktex-texmf/tex/latex/mathtools/mhsetup.sty
+)
+(/usr/local/share/miktex-texmf/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
 \g_MT_multlinerow_int=\count301
@@ -157,7 +171,8 @@ Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 \l_MT_below_shortintertext_sep=\dimen176
 \xmathstrut@box=\box55
 \xmathstrut@dim=\dimen177
-) (/home/satyam/.miktex/texmfs/install/tex/latex/booktabs/booktabs.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen178
 \lightrulewidth=\dimen179
@@ -176,24 +191,31 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count304
 \@lastruleclass=\count305
 \@thisrulewidth=\dimen190
-) (/home/satyam/.miktex/texmfs/install/tex/latex/graphics/graphicx.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
- (/home/satyam/.miktex/texmfs/install/tex/latex/graphics/graphics.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
- (/home/satyam/.miktex/texmfs/install/tex/latex/graphics/trig.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
-) (/home/satyam/.miktex/texmfs/install/tex/latex/graphics-cfg/graphics.cfg
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
- (/home/satyam/.miktex/texmfs/install/tex/latex/graphics-def/pdftex.def
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen191
 \Gin@req@width=\dimen192
-) (/home/satyam/.miktex/texmfs/install/tex/latex/base/fontenc.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/base/fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
-) (/home/satyam/.miktex/texmfs/install/tex/latex/lm/lmodern.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -227,9 +249,11 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
-) (/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
- (/home/satyam/.miktex/texmfs/install/tex/latex/etoolbox/etoolbox.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count306
 )
@@ -245,62 +269,82 @@ LaTeX Info: Redefining \textls on input line 1449.
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
 \MT@listname@count=\count308
- (/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype-pdftex.def
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+
 LaTeX Info: Redefining \lsstyle on input line 944.
 LaTeX Info: Redefining \lslig on input line 944.
 \MT@outer@space=\skip61
 )
 Package microtype Info: Loading configuration file microtype.cfg.
- (/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype.cfg
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
 )
 LaTeX Info: Redefining \microtypesetup on input line 3065.
-) (/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/hyperref.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
- (/home/satyam/.miktex/texmfs/install/tex/latex/kvsetkeys/kvsetkeys.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-) (/home/satyam/.miktex/texmfs/install/tex/generic/kvdefinekeys/kvdefinekeys.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (/home/satyam/.miktex/texmfs/install/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
- (/home/satyam/.miktex/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (/home/satyam/.miktex/texmfs/install/tex/generic/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
- (/home/satyam/.miktex/texmfs/install/tex/generic/infwarerr/infwarerr.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/home/satyam/.miktex/texmfs/install/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-)) (/home/satyam/.miktex/texmfs/install/tex/latex/hycolor/hycolor.sty
+))
+(/home/satyam/.miktex/texmfs/install/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-) (/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/nameref.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/nameref.sty
 Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
- (/home/satyam/.miktex/texmfs/install/tex/latex/refcount/refcount.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-) (/home/satyam/.miktex/texmfs/install/tex/generic/gettitlestring/gettitlestring.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/generic/gettitlestring/gettitlestring.
+sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
  (/home/satyam/.miktex/texmfs/install/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count309
-) (/home/satyam/.miktex/texmfs/install/tex/generic/stringenc/stringenc.sty
-Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
+)
+(/home/satyam/.miktex/texmfs/install/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
 )
 \@linkdim=\dimen194
 \Hy@linkcounter=\count310
 \Hy@pagecounter=\count311
- (/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/pd1enc.def
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-) (/home/satyam/.miktex/texmfs/install/tex/generic/intcalc/intcalc.sty
+)
+(/home/satyam/.miktex/texmfs/install/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count312
- (/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/puenc.def
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/puenc.def
 File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
@@ -313,16 +357,20 @@ Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4468.
 \c@Hy@tempcnt=\count313
- (/home/satyam/.miktex/texmfs/install/tex/latex/url/url.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4807.
 \XeTeXLinkMargin=\dimen195
- (/home/satyam/.miktex/texmfs/install/tex/generic/bitset/bitset.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
- (/home/satyam/.miktex/texmfs/install/tex/generic/bigintcalc/bigintcalc.sty
-Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+
+(/home/satyam/.miktex/texmfs/install/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
 ))
 \Fld@menulength=\count314
 \Field@Width=\dimen196
@@ -339,16 +387,22 @@ Package hyperref Info: PDF/A mode OFF on input line 6114.
 \c@Hfootnote=\count317
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
- (/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/hpdftex.def
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
 \Fld@listcount=\count318
 \c@bookmark@seq@number=\count319
- (/home/satyam/.miktex/texmfs/install/tex/latex/rerunfilecheck/rerunfilecheck.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/rerunfilecheck/rerunfilecheck.st
+y
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
- (/home/satyam/.miktex/texmfs/install/tex/generic/uniquecounter/uniquecounter.sty
+
+(/home/satyam/.miktex/texmfs/install/tex/generic/uniquecounter/uniquecounter.st
+y
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
 )
 \Hy@SectionHShift=\skip62
 ) (/home/satyam/.miktex/texmfs/install/tex/latex/enumitem/enumitem.sty
@@ -365,10 +419,14 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 \c@theorem=\count324
 \c@lemma=\count325
 \c@remark=\count326
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 25.
- (/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmr.fd
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 25
+.
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (/home/satyam/.miktex/texmfs/install/tex/latex/l3backend-dev/l3backend-pdftex.def
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/l3backend-dev/l3backend-pdftex.d
+ef
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count327
 ) (state_dependent_rohmpc.aux)
@@ -442,8 +500,9 @@ LaTeX Font Info:    ... okay on input line 25.
 \everyMPtoPDFconversion=\toks34
 ) (/home/satyam/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (/home/satyam/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+(/home/satyam/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 LaTeX Info: Redefining \microtypecontext on input line 25.
@@ -463,54 +522,77 @@ Package microtype Info: Patching command `\showhyphens'.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
- (/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-cmr.cfg
-File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
 )
 Package hyperref Info: Link coloring OFF on input line 25.
- (state_dependent_rohmpc.out) (state_dependent_rohmpc.out)
+
+(state_dependent_rohmpc.out) (state_dependent_rohmpc.out)
 \@outlinefile=\write3
 \openout3 = `state_dependent_rohmpc.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 27.
- (/home/satyam/.miktex/texmfs/install/tex/latex/lm/ot1lmr.fd
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
+8.
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 27.
- (/home/satyam/.miktex/texmfs/install/tex/latex/lm/omllmm.fd
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
+8.
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 27.
- (/home/satyam/.miktex/texmfs/install/tex/latex/lm/omslmsy.fd
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
+28.
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 27.
- (/home/satyam/.miktex/texmfs/install/tex/latex/lm/omxlmex.fd
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
+28.
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 27.
+(Font)              <12> on input line 28.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 27.
+(Font)              <8> on input line 28.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 27.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
- (/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
+(Font)              <6> on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
+
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-) (/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-msa.cfg
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
- (/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
+LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
+
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-msb.cfg
+)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 43.
+(Font)              <10.95> on input line 45.
  [1
 
-{/home/satyam/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-ec.enc}] [2{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-rm.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathit.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathsy.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathex.enc}]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 90.
+{/home/satyam/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}{/home/satyam/.mi
+ktex/texmfs/install/fonts/enc/dvips/lm/lm-ec.enc}{/home/satyam/.miktex/texmfs/i
+nstall/fonts/enc/dvips/lm/lm-rm.enc}{/home/satyam/.miktex/texmfs/install/fonts/
+enc/dvips/lm/lm-mathit.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips
+/lm/lm-mathsy.enc}] [2{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/l
+m-mathex.enc}]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
+04.
  (/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -518,42 +600,63 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [3] [4] [5] [6] [7]
-<falcon_tube_comparison.png, id=215, 899.7615pt x 549.252pt>
+ [3]
+[4] [5]
+Overfull \hbox (4.70792pt too wide) in paragraph at lines 296--297
+\T1/lmr/m/n/10.95 (-20) alternative estimation-error bound obtained by bounding
+ the process-disturbance and measurement-
+ []
+
+[6] [7] [8] [9] [10]
+Overfull \hbox (10.73955pt too wide) in paragraph at lines 518--536
+\T1/lmr/m/n/10.95 (-20) centered acceleration disturbance components 7--9 are s
+caled. Other process-disturbance components,
+ []
+
+[11]
+<falcon_tube_comparison.png, id=273, 899.7615pt x 549.252pt>
 File: falcon_tube_comparison.png Graphic file (type png)
 <use falcon_tube_comparison.png>
-Package pdftex.def Info: falcon_tube_comparison.png  used on input line 330.
+Package pdftex.def Info: falcon_tube_comparison.png  used on input line 549.
 (pdftex.def)             Requested size: 437.0374pt x 266.78079pt.
- [8] [9 <./falcon_tube_comparison.png (PNG copy)>]
-Overfull \hbox (14.38806pt too wide) in paragraph at lines 356--360
-\T1/lmr/m/n/10.95 (-20) All paths below are relative to the repository root. The baseline is $\T1/lmtt/m/n/10.95 work / offline-[]sanity-[]20260910 /
- []
+ [12] [13 <./falcon_tube_comparison.png (PNG copy)>] [14] [15
 
-
-Overfull \hbox (7.72556pt too wide) in paragraph at lines 361--368
-\T1/lmtt/m/n/10.95 offline _ computations / mpc-[]sdp/$\T1/lmr/m/n/10.95 (-20) . Its $\T1/lmtt/m/n/10.95 main . m$ \T1/lmr/m/n/10.95 (-20) orchestrates the design; $\T1/lmtt/m/n/10.95 compute _ Pdelta _ Kdelta _
- []
-
-[10] (state_dependent_rohmpc.aux)
+] [16]
+(state_dependent_rohmpc.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `state_dependent_rohmpc.out' has not changed.
-(rerunfilecheck)             Checksum: 19501415C1F34AFB11372C1CCE0EC130;4487.
+
+(rerunfilecheck)             Checksum: 0C102C5A2FF5110B7DA3B82D43ED1E4E;5088.
  ) 
 Here is how much of TeX's memory you used:
- 13946 strings out of 469628
- 219623 string characters out of 5466922
- 678808 words of memory out of 5000000
- 42312 multiletter control sequences out of 15000+600000
- 684801 words of font info for 164 fonts, out of 8000000 for 9000
+ 14027 strings out of 469628
+ 220585 string characters out of 5466922
+ 682115 words of memory out of 5000000
+ 42331 multiletter control sequences out of 15000+600000
+ 686211 words of font info for 181 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 75i,14n,79p,1206b,582s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmbx10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmbx12.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmex10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi6.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr12.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr17.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr6.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmri10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmsy10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmsy8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmtt10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on state_dependent_rohmpc.pdf (10 pages, 468843 bytes).
+ 75i,14n,79p,1098b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmbx10.pfb></home/
+satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmbx12.pfb></home/satyam/.m
+iktex/texmfs/install/fonts/type1/public/lm/lmex10.pfb></home/satyam/.miktex/tex
+mfs/install/fonts/type1/public/lm/lmmi10.pfb></home/satyam/.miktex/texmfs/insta
+ll/fonts/type1/public/lm/lmmi6.pfb></home/satyam/.miktex/texmfs/install/fonts/t
+ype1/public/lm/lmmi8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/publi
+c/lm/lmr10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr12
+.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr17.pfb></hom
+e/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr6.pfb></home/satyam/.m
+iktex/texmfs/install/fonts/type1/public/lm/lmr8.pfb></home/satyam/.miktex/texmf
+s/install/fonts/type1/public/lm/lmri10.pfb></home/satyam/.miktex/texmfs/install
+/fonts/type1/public/lm/lmsy10.pfb></home/satyam/.miktex/texmfs/install/fonts/ty
+pe1/public/lm/lmsy8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public
+/lm/lmtt10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/amsfonts
+/symbols/msbm10.pfb>
+Output written on state_dependent_rohmpc.pdf (16 pages, 519621 bytes).
 PDF statistics:
- 329 PDF objects out of 1000 (max. 8388607)
- 89 named destinations out of 1000 (max. 500000)
- 29358 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 426 PDF objects out of 1000 (max. 8388607)
+ 115 named destinations out of 1000 (max. 500000)
+ 29366 words of extra memory for PDF output out of 29859 (max. 10000000)
 

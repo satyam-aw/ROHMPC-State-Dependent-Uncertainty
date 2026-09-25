@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1790184832.26479 "/home/satyam/ROHMPC-State-Dependent-Uncertainty/research/state_dependent_bounds/manuscript/state_dependent_rohmpc.tex" "state_dependent_rohmpc.pdf" "state_dependent_rohmpc" 1790184832.9223 0
+["pdflatex"] 1790192704.61251 "/home/satyam/ROHMPC-State-Dependent-Uncertainty/research/state_dependent_bounds/manuscript/state_dependent_rohmpc.tex" "state_dependent_rohmpc.pdf" "state_dependent_rohmpc" 1790192706.33391 0
   "/home/satyam/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map" 1790173492.40526 117278 f9a4b06d67ec771b66d81bb09c25fb46 ""
   "/home/satyam/.miktex/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1790173543.7845 10149492 bfc0ec866649a6a3bb1dc1aef699aa77 ""
   "/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-ec.enc" 1779433206.5683 2375 baa924870cfb487815765f9094cf3728 ""
@@ -18,6 +18,8 @@
   "/home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmr10.tfm" 1779433206.7243 12056 7e13df7fe4cbce21b072ba7c4f4deb6e ""
   "/home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmr12.tfm" 1779433206.7243 12092 7b1546e2d096cfd5dcbd4049b0b1ec2e ""
   "/home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmr17.tfm" 1779433206.7243 12156 ca1ae6a3c8564e89597f1f993fba1608 ""
+  "/home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmr6.tfm" 1779433206.7243 12048 c1068d0f4772be9b0ec447692e1d6d82 ""
+  "/home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmr8.tfm" 1779433206.7243 12064 a35db870f0b76c338d749c56dc030ef5 ""
   "/home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmri10.tfm" 1779433206.7243 17148 9556e1b5f936b77a796f68d2d559ba99 ""
   "/home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmtt10.tfm" 1779433206.7243 1372 2ef2c2b492b3c4cd7879fe083abbb061 ""
   "/home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/lmex10.tfm" 1779433206.7283 992 ce925c9346c7613270a79afbee98c070 ""
@@ -113,14 +115,14 @@
   "/home/satyam/.miktex/texmfs/install/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1776358539.47409 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "/home/satyam/.miktex/texmfs/install/tex/latex/tools/calc.sty" 1776406086.35482 10374 2ffd4f27c7f90b8a300608069537743c ""
   "/home/satyam/.miktex/texmfs/install/tex/latex/url/url.sty" 1776358536.67892 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "/home/satyam/ROHMPC-State-Dependent-Uncertainty/research/state_dependent_bounds/manuscript/state_dependent_rohmpc.tex" 1790184756.89533 28792 c57ba4f0367ab945563e5951759bd7c6 ""
+  "/home/satyam/ROHMPC-State-Dependent-Uncertainty/research/state_dependent_bounds/manuscript/state_dependent_rohmpc.tex" 1790192615.44235 33962 f8886b753b423da3fd6899d74c314533 ""
   "/usr/local/share/miktex-texmf/tex/latex/amscls/amsthm.sty" 1790173336.76128 12594 0d51ac3a545aaaa555021326ff22a6cc ""
   "/usr/local/share/miktex-texmf/tex/latex/mathtools/mathtools.sty" 1790173567.83299 62711 3b0ed1d68b598a75677c10d16646d5e5 ""
   "/usr/local/share/miktex-texmf/tex/latex/mathtools/mhsetup.sty" 1790173567.83299 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
   "falcon_tube_comparison.png" 1789059162.83282 94221 c0f6fe78ff1549a590d60ccd3265967c ""
-  "state_dependent_rohmpc.aux" 1790184832.76297 6347 3eccea6563ef342cad736515fca7d86c "pdflatex"
-  "state_dependent_rohmpc.out" 1790184832.76297 4487 19501415c1f34afb11372c1cce0ec130 "pdflatex"
-  "state_dependent_rohmpc.tex" 1790184756.89533 28792 c57ba4f0367ab945563e5951759bd7c6 ""
+  "state_dependent_rohmpc.aux" 1790192706.16291 6659 f33beeb872931b9e256eab5ef9f72edd "pdflatex"
+  "state_dependent_rohmpc.out" 1790192706.16291 4482 8f17473768591ecb9688184cb8d44bc7 "pdflatex"
+  "state_dependent_rohmpc.tex" 1790192615.44235 33962 f8886b753b423da3fd6899d74c314533 ""
   (generated)
   "state_dependent_rohmpc.aux"
   "state_dependent_rohmpc.log"

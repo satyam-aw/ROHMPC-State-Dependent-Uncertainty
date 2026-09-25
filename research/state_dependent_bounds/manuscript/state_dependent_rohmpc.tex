@@ -24,17 +24,19 @@
 \date{23 September 2026}
 \begin{document}
 \maketitle
+% Hidden in sharing draft; change false to true to restore.
+\iffalse
 \begin{abstract}
 We study state-dependent process uncertainty in a continuous-time output-feedback tube MPC formulation. Starting from a fixed quadratic observer certificate, a Schur-complement construction reduces its auxiliary process envelope for nested local disturbance sets without changing the metric or gains. This yields coupled prediction equations for a squared estimation-error bound and an observer-to-nominal tracking radius. We state conditional recursive-feasibility and robust-constraint-satisfaction guarantees for a free-center MPC formulation, following the architecture of K\"ohler, M\"uller, and Allg\"ower. A Falcon numerical example reuses existing offline certificates and gives a 6.68\% final-time estimation-radius reduction relative to the baseline-equivalent global propagation. The experiment concerns radius dynamics under a prescribed speed schedule; it is not a closed-loop plant simulation. Continuous-domain certification, rigorous numerical residual treatment, local uncertainty validation, and a nonempty compatible terminal set remain unresolved.
 \end{abstract}
+\fi
 
 \section{Introduction}
 Robust output-feedback MPC must account for both uncertain state estimates and deviations between an observer trajectory and a nominal prediction. A global uncertainty envelope can be unnecessarily conservative in operating regions with smaller model mismatch. Our objective is to retain an existing offline design while allowing the predicted uncertainty allowance to depend on the operating region covered by the error tubes.
 
-The organization follows \cite{kohler2021}: preliminaries, estimation bounds, robust output-feedback MPC, and a numerical example. Joint nominal and tube prediction, a free nominal initial center, and shifted-candidate arguments are established ingredients of Section IV-B of that reference. They are not claimed as new here. Our proposed extension concerns the local process-envelope construction and its incorporation into coupled continuous-time radius dynamics. No novelty claim relative to the broader literature is established by this draft.
+The organization follows \cite{kohler2021}: preliminaries, estimation bounds, robust output-feedback MPC, and a numerical example. Joint nominal and tube prediction, a free nominal initial center, and shifted-candidate arguments are established ingredients of Section IV-B of that reference. They are not claimed as new here. Our proposed extension concerns the local process-envelope construction and its incorporation into coupled continuous-time radius dynamics.
 
-\subsection{Scope and status}
-The analysis uses fixed metrics and observer/controller gains, a fixed regulation target, and time-invariant constraints. Measurement noise remains globally bounded in the numerical example. The state-dependent process model is prescribed synthetically; containment inside a global uncertainty set does not establish that the actual plant disturbance belongs to the smaller local set. The theorems below are conditional mathematical statements, while the Falcon results are finite numerical audits of saved certificates. The full planning/tracking ROHMPC hierarchy is outside this scope.
+We consider robust output-feedback MPC with fixed metrics and observer/controller gains, a fixed regulation target, and time-invariant constraints.
 
 \section{Preliminaries}
 \subsection{Plant, observer, and nominal prediction}
@@ -47,7 +49,11 @@ y &= Cx+F\eta, &\eta&\in\mathcal N,\\
 \dot z&=f_0(z,v), & u&=v+K(\hat x-z).
 \end{align}
 \end{subequations}
-Here $v$ is the nominal control input, not velocity. The function $f_0$ includes the identified constant bias; only centered residual uncertainty is scaled. The set $\cW_0$ is a centered box and $D(a)$ is diagonal, scaling selected channels by $a\in[\beta,1]$ and leaving the others unchanged, with $0<\beta<1$. Thus $E_0D(a)\cW_0$ is nested as $a$ increases. The matrix $L$ is a fixed Luenberger observer gain.
+Here $v$ is the nominal control input, not velocity. The function $f_0$ includes the identified constant bias; only centered residual uncertainty is scaled. Assume the centered disturbance belongs to the componentwise bounded box
+\[
+\cW_0=\{w\in\R^m: |w_j|\le\bar w_j,\ j=1,\ldots,m\},\qquad \bar w_j>0.
+\]
+This set is compact and convex. Its $2^m$ vertices, denoted $w^{(i)}\in\operatorname{vert}(\cW_0)$, are obtained by choosing each component as either $-\bar w_j$ or $+\bar w_j$. Every point in the box is a convex combination of these vertices. The diagonal matrix $D(a)\in\R^{m\times m}$ scales selected components of the disturbance vector $w$ by $a\in[\beta,1]$, leaving the remaining components unchanged, with $0<\beta<1$. Thus $E_0D(a)\cW_0$ is nested as $a$ increases. The matrix $L$ is a fixed Luenberger observer gain.
 
 Let $P=P_\delta\succ0$, $X=P^{-1}$, and $T^\top T=P$. Define
 \begin{equation}
@@ -67,6 +73,8 @@ Subtracting the dynamics gives
 \end{subequations}
 Process disturbance enters the estimation error directly. It influences observer-to-nominal tracking indirectly through $e$; the observer equation itself contains no additive plant process disturbance.
 
+\subsection{Time and prediction notation}
+In continuous-time expressions such as $x(t)$, $R(t)$, and $s(t)$, the argument $t$ denotes physical time. In the MPC formulation, the subscript $t$ denotes the integer update index; update $t$ occurs at physical time $th$, where $h>0$ is the sampling period. In particular, $\hat x_t:=\hat x(th)$, and $\bar R_t$ is the estimation-error bound available at that update. Prediction time $\tau\in[0,H_p]$ measures time ahead of the update, with horizon $H_p\ge h$. Thus $z_t(\tau),v_t(\tau),R_t(\tau),s_t(\tau)$ are predictions made at update $t$ for physical time $th+\tau$. Dots denote derivatives with respect to continuous time, or prediction time for predicted trajectories. Time arguments are omitted in general bounds when the meaning is clear. During an applied interval, define $u_t(\tau):=u(th+\tau)$ and $\hat x_t(\tau):=\hat x(th+\tau)$ for $0\le\tau<h$. These are actual interval signals, while $z_t(\tau),v_t(\tau)$ are the planned trajectories; the update estimate satisfies $\hat x_t=\hat x_t(0)$.
 \subsection{Domain and incremental conditions}
 \begin{assumption}[Regularity and certificate domain]\label{ass:domain}
 The model and observer admit unique solutions for admissible measurable disturbances and controls. The derivative inequalities used below hold throughout a neighborhood of the certified state/input domain $\cD$, including every segment needed for incremental arguments. The MPC enforces containment of the true-state tube, observer-state tube, and relevant feedback inputs in this domain at every prediction time.
@@ -75,6 +83,12 @@ For differentiable $f_0$, its difference at two states with the same input equal
 
 \section{State-Dependent Estimation Error Bounds}
 \subsection{Recovering the global quadratic certificate}
+The starting point is the offline robust output-feedback design of Benders et al.~\cite{benders2025}. Let $\epsilon\ge0$ denote the constant estimation-error radius supplied by its global observer certificate, expressed here in the $P$-norm:
+\[
+\norm{x-\hat x}_P\le\epsilon,
+\qquad\text{equivalently}\qquad V_e\le\epsilon^2.
+\]
+This invariant bound holds provided $V_e(0)\le\epsilon^2$ and the certificate assumptions hold. We use the observer-certificate LMIs implemented in the accompanying ROHMPC repository~\cite{rohmpc}, specialized here to a constant metric and written in the notation of this manuscript. This subsection recovers the original constant radius $\epsilon$ and introduces a time-varying squared radius $R(t)$; Section III-B then constructs the local process-envelope reduction.
 For $b\in\R^n$, introduce the symmetric off-diagonal block
 \begin{equation}
 \mathcal S(b)=\begin{bmatrix}0&b\\b^\top&0\end{bmatrix}.
@@ -82,7 +96,7 @@ For $b\in\R^n$, introduce the symmetric off-diagonal block
 Let $A_o=A-LC$ and $q_0=\lambda\epsilon^2$, with $\lambda>0$. The saved observer certificate has auxiliary matrices $W,H$ satisfying
 \begin{subequations}\label{eq:lmis}
 \begin{align}
-\mathcal S(E_0w)&\preceq W &&\forall w\in\cW_0,\\
+\mathcal S(E_0w)&\preceq W &&\forall w\in\cW_0,\label{eq:baseline-process}\\
 \mathcal S(-LF\eta)&\preceq H &&\forall\eta\in\mathcal N,\\
 W+H+\begin{bmatrix}XA_o^\top+A_oX+\lambda X&0\\0&-q_0\end{bmatrix}&\preceq0.
 \end{align}
@@ -93,7 +107,7 @@ To see explicitly how these LMIs imply the error bound, first consider the globa
 \[
 \dot e=A_oe+b,\qquad b:=E_0w-LF\eta.
 \]
-For the nonlinear model, $A$ here is the segment-averaged state Jacobian between $\hat x$ and $x$ at the common input $u$. The following argument applies if the Jacobian LMI holds along that segment. The vector $b$ is the combined process and measurement-noise contribution; it is symbolic, not a measured or numerically substituted disturbance.
+For the nonlinear model, $A$ here is the segment-averaged state Jacobian between $\hat x$ and $x$ at the common input $u$. The following argument applies if the Jacobian LMI holds along that segment. The vector $b$ collects the process disturbance and measurement-noise contributions.
 
 Rewrite the first two inequalities in \eqref{eq:lmis} as $\mathcal S(E_0w)-W\preceq0$ and $\mathcal S(-LF\eta)-H\preceq0$, and add the third. The auxiliary matrices cancel:
 \[
@@ -113,7 +127,7 @@ XA_o^\top+A_oX+\lambda X&b\\
 b^\top&-q_0
 \end{bmatrix}\preceq0.
 \]
-Negative semidefiniteness means $\xi^\top M\xi\le0$ for every vector $\xi$. Choose $\xi=[Pe;1]$; this does not replace $X$, which remains $P^{-1}$. Using $PX=XP=I$ and constant $P$ gives
+Negative semidefiniteness means $\xi^\top M\xi\le0$ for every vector $\xi$. Choosing $\xi=[Pe;1]$ and using $PX=XP=I$ and constant $P$ gives
 \begin{align*}
 \begin{bmatrix}Pe\\1\end{bmatrix}^{\!\top}M\begin{bmatrix}Pe\\1\end{bmatrix}
 &=e^\top P(XA_o^\top+A_oX+\lambda X)Pe+2e^\top Pb-q_0\\
@@ -129,33 +143,82 @@ Equivalently, define the invertible matrix $G=\diag(P,1)$. The congruence transf
 G^\top MG=
 \begin{bmatrix}A_o^\top P+PA_o+\lambda P&Pb\\b^\top P&-q_0\end{bmatrix}\preceq0.
 \end{equation}
-Indeed, $v^\top G^\top MGv=(Gv)^\top M(Gv)\le0$ for every $v$; invertibility makes the two matrix inequalities equivalent. Evaluating the transformed matrix at $[e;1]$ is identical to evaluating $M$ at $[Pe;1]$, because $G[e;1]=[Pe;1]$. The bottom entry $1$ generates the cross term $2e^\top Pb$ and the constant $-q_0$. All these statements hold for every admissible $w,\eta$ without knowing their actual values online.
+Indeed, $v^\top G^\top MGv=(Gv)^\top M(Gv)\le0$ for every $v$; invertibility makes the two matrix inequalities equivalent. Evaluating the transformed matrix at $[e;1]$ is identical to evaluating $M$ at $[Pe;1]$, because $G[e;1]=[Pe;1]$. These inequalities hold for every admissible $w,\eta$.
 
-The comparison equation $\dot R=-\lambda R+q_0$ has solution
+To bound the estimation error, introduce a scalar squared radius $R(t)$ defining the time-varying error set
+\[
+\mathcal E(t)=\{e:e^\top Pe\le R(t)\}.
+\]
+Thus $R(t)$ is the upper boundary in the scalar $V_e$ coordinate, and $e^\top Pe=R(t)$ is the corresponding boundary in error-state space. Choose $R(0)\ge V_e(0)$ and propagate this boundary using
+\[
+\dot R=-\lambda R+q_0.
+\]
+Subtracting this equation from \eqref{eq:global-dissipation} gives
+\[
+\frac{d}{dt}(V_e-R)\le-\lambda(V_e-R),
+\qquad
+V_e(t)-R(t)\le e^{-\lambda t}\bigl(V_e(0)-R(0)\bigr)\le0.
+\]
+Consequently, $V_e(t)\le R(t)$ and $\sqrt{R(t)}$ bounds the estimation error in the $P$-norm wherever the derivative inequality holds. The comparison equation has solution
 \begin{equation}\label{eq:global-solution}
 R(t)=\epsilon^2+(R(0)-\epsilon^2)e^{-\lambda t}.
 \end{equation}
 When $R(0)\ge V_e(0)$ it bounds the estimation error; when $R(0)=\epsilon^2$, it exactly recovers the original constant radius $\epsilon$.
 
 \subsection{Local process-envelope reduction}
-Partition the saved matrix as
+Let $W\in\mathbb S^{n+1}$ be the process-envelope matrix obtained from the baseline offline SDP in Section III-A, where $\mathbb S^{n+1}$ denotes the symmetric $(n+1)\times(n+1)$ matrices. Partition it as
 \begin{equation}
 W=\begin{bmatrix}Q&h_w\\h_w^\top&c\end{bmatrix},\qquad Q\succ0.
 \end{equation}
+Here $Q\in\mathbb S^n$ is the upper-left block, $h_w\in\R^n$ is the off-diagonal block, and $c\in\R$ is the bottom-right entry. These blocks are inherited from the baseline SDP solution. The local construction assumes $Q\succ0$, keeps $Q$ and $h_w$ fixed, and reduces the scalar entry $c$ to accommodate smaller disturbance sets.
+
 The Schur complement gives
 \begin{equation}\label{eq:schur}
 \mathcal S(E_0D(a)w)\preceq W
 \iff (E_0D(a)w-h_w)^\top Q^{-1}(E_0D(a)w-h_w)\le c.
 \end{equation}
-Define
-\begin{equation}
-g(a)=\max_{w\in\operatorname{vert}(\cW_0)}
-(E_0D(a)w-h_w)^\top Q^{-1}(E_0D(a)w-h_w).
+The matrix $Q^{-1}$ determines the quadratic weighting, $h_w$ the center in the process-disturbance vector space, and $c$ the admissible quadratic level. Define
+\[
+\phi(w,a):=(E_0D(a)w-h_w)^\top Q^{-1}(E_0D(a)w-h_w),
+\qquad \phi_i(a):=\phi(w^{(i)},a).
+\]
+Here $\phi_i$ is the expression at the fixed vertex $w^{(i)}$, regarded as a function of the scale $a$. Their pointwise maximum is
+\begin{equation}\label{eq:vertex-maximum}
+g(a)=\max_{i=1,\ldots,2^m}\phi_i(a)
+=\max_{w\in\operatorname{vert}(\cW_0)}\phi(w,a).
 \end{equation}
-The vertex maximum covers the entire box because the quadratic is convex in $w$. Each vertex expression is convex in $a$, since $D(a)$ is affine. Their maximum $g$ is therefore convex. Nestedness additionally implies $g(\beta)\le g(1)$. For $a\in[\beta,1]$,
+For fixed $a$, the Hessian with respect to $w$ is
+\[
+\nabla_w^2\phi(w,a)=2D(a)^\top E_0^\top Q^{-1}E_0D(a)\succeq0,
+\]
+so $\phi(\cdot,a)$ is convex. Any $w\in\cW_0$ can be written as $w=\sum_i\theta_iw^{(i)}$ with $\theta_i\ge0$ and $\sum_i\theta_i=1$. Therefore,
+\[
+\phi(w,a)\le\sum_i\theta_i\phi(w^{(i)},a)\le\max_i\phi_i(a)=g(a).
+\]
+Since the vertices themselves belong to the box, $g(a)=\max_{w\in\cW_0}\phi(w,a)$. Thus the vertex maximum bounds the entire disturbance box, including its interior.
+
+For a fixed vertex, the affine dependence of $D(a)$ permits the representation
+\[
+E_0D(a)w^{(i)}-h_w=a p_i+r_i,
+\qquad
+\phi_i''(a)=2p_i^\top Q^{-1}p_i\ge0,
+\]
+where $p_i,r_i$ are fixed vectors. Each vertex function is consequently convex in $a$, and their pointwise maximum $g$ is convex as well, although it need not be differentiable where the maximizing vertex changes. Nestedness of $E_0D(a)\cW_0$ also gives $g(\beta)\le g(1)$.
+
+A convex function lies below the chord joining its endpoint values. Writing
+$a=\frac{1-a}{1-\beta}\beta+\frac{a-\beta}{1-\beta}\,1$ for $a\in[\beta,1]$ yields
+\[
+g(a)\le\frac{1-a}{1-\beta}g(\beta)+\frac{a-\beta}{1-\beta}g(1).
+\]
+Equivalently,
 \begin{equation}\label{eq:chord}
 g(a)\le g(1)-\frac{1-a}{1-\beta}\bigl(g(1)-g(\beta)\bigr).
 \end{equation}
+For $\beta<a<1$, the same inequality can be expressed as a comparison of secant slopes:
+\[
+\frac{g(1)-g(a)}{1-a}\ge\frac{g(1)-g(\beta)}{1-\beta}.
+\]
+The secant ending at $1$ and starting at $a$ has slope at least as large as the secant from $\beta$ to $1$. Hence the chord provides a guaranteed reduction from the global value $g(1)$, without requiring derivatives of $g$. The following proposition transfers this reduction to the process-envelope entry $c$ and the observer forcing $q_0$ by reducing both by the same amount.
 \begin{proposition}[Local forcing from a fixed certificate]\label{prop:local}
 Assume \eqref{eq:lmis} holds exactly and $Q\succ0$. Choose
 $0\le\Delta\le g(1)-g(\beta)$ and define
@@ -168,127 +231,277 @@ Then $W(a)$ covers the local process set and the derivative bound becomes
 $\dot V_e\le-\lambda V_e+q(a)$.
 \end{proposition}
 \begin{proof}
-The global certificate implies $c\ge g(1)$. Equation~\eqref{eq:chord} and the choice of $\Delta$ give $g(a)\le c-\Delta\theta(a)$, proving the local envelope inequality by \eqref{eq:schur}. In the final LMI, reducing the bottom-right entry of $W$ by $\Delta\theta(a)$ is exactly cancelled by replacing $-q_0$ with $-q(a)$. Its other entries are unchanged. The quadratic-form argument for \eqref{eq:global-dissipation} then applies.
+At $a=1$, $D(1)=I$. The process-envelope inequality~\eqref{eq:baseline-process} of the global baseline certificate, together with the Schur-complement equivalence~\eqref{eq:schur} and the vertex-maximum identity~\eqref{eq:vertex-maximum}, implies
+\[
+c\ge\max_{w\in\cW_0}\phi(w,1)=\max_i\phi_i(1)=g(1).
+\]
+Equation~\eqref{eq:chord} and the choice of $\Delta$ give $g(a)\le c-\Delta\theta(a)$, proving the local envelope inequality by \eqref{eq:schur}. In the final LMI, reducing the bottom-right entry of $W$ by $\Delta\theta(a)$ is exactly cancelled by replacing $-q_0$ with $-q(a)$. Its other entries are unchanged. The quadratic-form argument for \eqref{eq:global-dissipation} then applies.
 \end{proof}
-At $a=1$ the global certificate is recovered. This construction changes an auxiliary envelope, not $P,K,L$, and requires no new SDP. For the subsequent formulation we additionally require $q_0-\Delta>0$.
+At $a=1$ the global baseline certificate is recovered. This construction changes an auxiliary envelope, not $P,K,L$, and requires no new SDP. For the subsequent formulation we additionally require $q_0-\Delta>0$.
+For each $a\in[\beta,1]$, the vertex maximum $g(a)$ covers every process disturbance $E_0D(a)w$ with $w\in\cW_0$. Consequently, the reduced envelope $W(a)$ and the resulting forcing allowance $q(a)$ are valid for all disturbances in the local set $E_0D(a)\cW_0$, with the measurement-noise envelope unchanged.
 
-\subsection{Bounding the unknown operating point}
-For the velocity-dependent example, let $S_v$ select translational velocity and set
-\begin{equation}
+\subsection{Velocity-Dependent Disturbance Bound over the Predicted Tube}
+Let $S_v$ select the translational velocity components of the state, and denote the true velocity vector by $v_x:=S_vx$. The symbol $v$ in the nominal dynamics continues to denote the nominal control input. 
+Consider the velocity-dependent amplitude law
+\begin{equation}\label{eq:velocity-amplitude}
 a(x)=\beta+(1-\beta)\frac{\norm{S_vx}_2^2}{v_{\max}^2},\qquad
 \norm{S_vx}_2\le v_{\max}.
 \end{equation}
-Since $\norm{S_ve}_2\le\norm{S_vT^{-1}}_2\norm e_P$, define
-\begin{align}
-c_v&=\norm{S_vT^{-1}}_2,\\
-v_{\rm up}&=\min\{v_{\max},\norm{S_vz}_2+c_v(\sqrt R+s)\},\\
-a_{\rm up}&=\beta+(1-\beta)(v_{\rm up}/v_{\max})^2.
-\end{align}
-The cap is valid only if the true-state velocity domain is guaranteed. Nominal feasibility alone does not justify it. Nestedness allows use of the process envelope at $a_{\rm up}$ for every true state in the tube. Write $q(z,R,s)=q(a_{\rm up})$.
+The amplitude enters the physical process disturbance through
+\[
+d(x,w)=E_0D(a(x))w,\qquad w\in\cW_0.
+\]
+The diagonal matrix $D(a)$ scales the selected process-disturbance components as defined in Section II-A. Thus a bound on true speed determines an enclosing local process-disturbance set.
 
-\subsection{Earlier separate-norm prototype}
-An initial alternative bounded process and noise channels separately:
+Recall that $T^\top T=P$, so $\norm e_P=\norm{Te}_2$. Define
+\begin{equation}\label{eq:velocity-metric-factor}
+c_v:=\norm{S_vT^{-1}}_2.
+\end{equation}
+Using the Cauchy--Schwarz inequality and the induced matrix norm bound, we obtain
+\begin{align*}
+\norm{S_ve}_2
+&=\norm{S_vT^{-1}(Te)}_2\\
+&\le\norm{S_vT^{-1}}_2\norm{Te}_2
+=c_v\norm e_P\le c_v\sqrt R.
+\end{align*}
+The same argument gives $\norm{S_v\delta}_2\le c_v\norm\delta_P\le c_vs$.
+Starting from the state decomposition $x=z+\delta+e$, the triangle inequality gives
+\begin{align*}
+\norm{S_vx}_2
+&=\norm{S_vz+S_v\delta+S_ve}_2\\
+&\le\norm{S_vz}_2+\norm{S_v\delta}_2+\norm{S_ve}_2\\
+&\le\norm{S_vz}_2+c_v(s+\sqrt R).
+\end{align*}
+Combining this tube bound with the certified domain bound $\norm{S_vx}_2\le v_{\max}$ defines
+\begin{equation}\label{eq:local-speed-bound}
+v_{\rm up}:=\min\{v_{\max},\norm{S_vz}_2+c_v(\sqrt R+s)\}.
+\end{equation}
+Thus $v_{\rm up}$ bounds true speed for every state in the predicted error tube that lies in the certified domain. The cap $v_{\max}$ requires domain containment of the true-state tube; a bound on the nominal speed alone does not establish it.
+
+Since the amplitude law~\eqref{eq:velocity-amplitude} is nondecreasing in speed,
+\begin{equation}\label{eq:local-amplitude-bound}
+a(x)\le a_{\rm up}:=\beta+(1-\beta)(v_{\rm up}/v_{\max})^2.
+\end{equation}
+Nestedness of the scaled disturbance boxes then gives
+\[
+E_0D(a(x))\cW_0\subseteq E_0D(a_{\rm up})\cW_0.
+\]
+Applying Proposition~\ref{prop:local} to this enclosing set yields
+\begin{equation}\label{eq:local-observer-bound}
+\dot V_e\le-\lambda V_e+q(a_{\rm up}),\qquad
+q(z,R,s):=q(a_{\rm up}).
+\end{equation}
+The forcing $q(a_{\rm up})$ uses an upper bound on the disturbance amplitude over the predicted tube, computed from the nominal velocity and both error radii.
+\subsection{Comparison with Separate-Norm Disturbance Bounds}
+Retaining the model, uncertainty sets, metric, and gains introduced in Section II, consider an alternative estimation-error bound obtained by bounding the process-disturbance and measurement-noise contributions separately. Derivative inequalities for error norms are understood to hold almost everywhere in time. If the disturbance-free observer error satisfies $\frac{d}{dt}\norm e_P\le-\rho_o\norm e_P$ for a contraction rate $\rho_o>0$, a radius bound can be propagated as
 \begin{equation}
 \dot r=-\rho_o r+b_{\rm rest}+a_{\rm up}b_{\rm acc}+b_\eta.
 \end{equation}
-For example $b_{\rm acc}=\max\norm{TE_{\rm acc}w_{\rm acc}}_2$ and
-$b_\eta=\max_{\eta\in\mathcal N}\norm{TLF\eta}_2$.
-The triangle inequality bounds the norm of a sum by the sum of separate maxima. This can discard joint directional information. The resulting bound need not recover the original SDP radius even when $a=1$. Proposition~\ref{prop:local} was introduced to preserve the original quadratic certificate instead.
+Here $b_{\rm acc}=\max\norm{TE_{\rm acc}w_{\rm acc}}_2$ bounds the unscaled acceleration-disturbance contribution, $b_{\rm rest}$ bounds the remaining process contribution, and $b_\eta=\max_{\eta\in\mathcal N}\norm{TLF\eta}_2$ bounds measurement noise. Each maximum is taken over its corresponding admissible set.
 
+For vector contributions $d_j(\omega_j)$ with $\omega_j\in\Omega_j$, this construction uses
+\[
+\max_{\omega\in\prod_j\Omega_j}\left\|\sum_j d_j(\omega_j)\right\|_P
+\le\sum_j\max_{\omega_j\in\Omega_j}\norm{d_j(\omega_j)}_P.
+\]
+The triangle inequality and separate maximizations discard directional information: the individual largest contributions need not align to attain the sum of their norms. Thus this approach can be more conservative and need not recover the original SDP radius at $a=1$. Proposition~\ref{prop:local} retains the original quadratic certificate and recovers its global baseline at $a=1$.
 \section{Robust Output-Feedback MPC}
 \subsection{Coupled tube dynamics}
-Suppose the tracking contraction condition holds throughout the relevant segments:
+Suppose the tracking contraction condition holds along every state--input segment joining $(z,v)$ to $(\hat x,v+K(\hat x-z))$ in the certified domain:
 \begin{equation}
-(A+BK)^\top P+P(A+BK)\preceq-2\rho P,\qquad\rho>0.
+(A+BK)^\top P+P(A+BK)\preceq-2\rho P,\qquad\rho>0.\label{eq:tracking-contraction}
 \end{equation}
-With $\gamma=\norm{TLC T^{-1}}_2$ and $b_\eta$ as above, \eqref{eq:errors} implies
+With $T^\top T=P$, define
+\[
+\gamma:=\norm{TLC T^{-1}}_2,\qquad
+b_\eta:=\max_{\eta\in\mathcal N}\norm{TLF\eta}_2.
+\]
+The constant $b_\eta$ bounds the measurement-noise contribution $LF\eta$ to the observer dynamics in the $P$-norm. Equation~\eqref{eq:errors} then implies
 \begin{equation}
-D^+\norm\delta_P\le-\rho\norm\delta_P+\gamma\sqrt{V_e}+b_\eta.
+\frac{d}{dt}\norm\delta_P\le-\rho\norm\delta_P+\gamma\sqrt{V_e}+b_\eta.\label{eq:tracking-bound}
 \end{equation}
-Thus the proposed augmented prediction is
+The derivation of \eqref{eq:tracking-bound}, using the contraction condition~\eqref{eq:tracking-contraction} and the Cauchy--Schwarz inequality, is given in Appendix~\ref{app:tracking-bound}. Thus the proposed augmented prediction is
 \begin{subequations}\label{eq:tubes}
 \begin{align}
 \dot z&=f_0(z,v),\\
 \dot R&=-\lambda R+q(z,v,R,s),\\
-\dot s&=-\rho s+\gamma\sqrt R+b_\eta.
+\dot s&=-\rho s+\gamma\sqrt R+b_\eta.\label{eq:tracking-radius}
 \end{align}
 \end{subequations}
-The general notation permits input dependence in $q$; the present velocity example has none explicitly. The forcing must bound the entire state/input tube, not only its nominal center.
+The general notation permits input dependence in $q$; the present velocity example has none explicitly. The forcing bound $q(z,v,R,s)$ must be valid for every state--input pair represented by the predicted tube and every admissible disturbance realization.
 
 \begin{assumption}[Radius regularity and initial bounds]\label{ass:radii}
-On the admissible augmented domain $q$ is locally Lipschitz and
+The forcing bound $q(z,v,R,s)$ is locally Lipschitz in its arguments on the set of admissible nominal states, inputs, and radius pairs, and satisfies
 $0<q_{\min}\le q\le q_{\max}$. Define
 \begin{equation}
 0<R_{\min}\le q_{\min}/\lambda,\quad R_{\max}=q_{\max}/\lambda,\quad
 s_{\max}=(\gamma\sqrt{R_{\max}}+b_\eta)/\rho.
 \end{equation}
-The radii lie in $\mathcal B=[R_{\min},R_{\max}]\times[0,s_{\max}]$. An available initial prior $\bar R_0$ satisfies $V_e(0)\le\bar R_0$. The observer is continuous across updates; observer resets require a separately certified jump rule.
+The pair of radius variables $(R,s)$ is constrained to the rectangle
+\[
+\begin{aligned}
+\mathcal B&=[R_{\min},R_{\max}]\times[0,s_{\max}]\\
+&=\{(R,s):R_{\min}\le R\le R_{\max},\ 0\le s\le s_{\max}\}.
+\end{aligned}
+\]
+These variables bound the errors through $e^\top Pe\le R$ and $\norm\delta_P\le s$. An available initial prior $\bar R_0\in[R_{\min},R_{\max}]$ satisfies $V_e(0)\le\bar R_0$. The observer state evolves continuously according to the observer dynamics in Section II, including across MPC updates.
 \end{assumption}
-The vector field points inward on every boundary of $\mathcal B$, so this set is invariant along admissible nominal trajectories. The positive lower radius avoids the lack of local Lipschitz continuity of $\sqrt R$ at zero. Cases with $q_{\min}=0$ require separate analysis.
+The coupled radius equations~\eqref{eq:tubes} satisfy the following conditions on the four boundaries of $\mathcal B$:
+\[
+\begin{aligned}
+R=R_{\min}:\quad &\dot R\ge-\lambda R_{\min}+q_{\min}\ge0,\\
+R=R_{\max}:\quad &\dot R\le-\lambda R_{\max}+q_{\max}=0,\\
+s=0:\quad &\dot s=\gamma\sqrt R+b_\eta\ge0,\\
+s=s_{\max}:\quad &\dot s\le-\rho s_{\max}+\gamma\sqrt{R_{\max}}+b_\eta=0.
+\end{aligned}
+\]
+Thus the radius pair cannot leave this rectangle along admissible nominal trajectories: if $(R(0),s(0))\in\mathcal B$, then $(R(t),s(t))\in\mathcal B$ for all subsequent times on which the assumptions hold. Since $\frac{d}{dR}\sqrt R=\frac{1}{2\sqrt R}$, the derivative is unbounded as $R\to0^+$. Restricting $R\ge R_{\min}>0$ bounds this derivative and ensures that the square-root term is Lipschitz on the admissible interval.
 
 \begin{lemma}[Tube containment]\label{lem:tube}
 Under Assumptions~\ref{ass:domain}--\ref{ass:radii}, the observer and tracking derivative inequalities, and valid initial bounds, $V_e(t)\le R(t)$ and $\norm{\delta(t)}_P\le s(t)$ throughout an applied prediction interval.
 \end{lemma}
 \begin{proof}
-On $V_e=R$, the derivative of $V_e-R$ is nonpositive. On $\norm\delta_P=s$ with $V_e\le R$,
-$D^+(\norm\delta_P-s)\le\gamma(\sqrt{V_e}-\sqrt R)\le0$.
-The regularity assumptions and tangent/comparison argument yield invariance of the coupled tube. Domain inclusion and a first-exit continuation argument ensure that the derivative hypotheses remain applicable.
+On $V_e=R$, the derivative of $V_e-R$ is nonpositive. Subtracting \eqref{eq:tracking-radius} from \eqref{eq:tracking-bound} at $\norm\delta_P=s$, with $V_e\le R$, gives
+$\frac{d}{dt}(\norm\delta_P-s)\le\gamma(\sqrt{V_e}-\sqrt R)\le0$.
+These boundary inequalities, together with the regularity assumptions, ensure that the estimation and tracking errors remain within their coupled bounds. Domain inclusion and a first-exit continuation argument ensure that the derivative hypotheses remain applicable.
 \end{proof}
-For the same nominal signal and initial radii, $q\le q_0$ also implies $R_{\rm local}\le R_{\rm global}$ by a scalar integrating-factor comparison, and then $s_{\rm local}\le s_{\rm global}$. This compares bounds, not actual errors or MPC performance.
+For identical nominal trajectories and initial radii, the local estimation-error forcing bound $q_{\rm local}(t)\le q_0$, where $q_0=\lambda\epsilon^2$ is the global baseline forcing bound, yields $R_{\rm local}(t)\le R_{\rm global}(t)$ and $s_{\rm local}(t)\le s_{\rm global}(t)$. Thus the local formulation produces no larger predicted error bounds under these common conditions. The derivation is given in Appendix~\ref{app:radius-comparison}.
 
 \subsection{Tightened constraints and MPC initialization}
-For each mixed constraint $g_j(x,u)\le0$, impose
+For each state--input constraint $g_j(x,u)\le0$, impose the worst-case condition over the predicted error tube:
 \begin{equation}\label{eq:tightening}
 \sup_{\norm e_P\le\sqrt R,\ \norm\delta_P\le s}
  g_j(z+\delta+e,v+K\delta)\le0.
 \end{equation}
-For $a_j^\top x+b_j^\top u\le c_j$, the exact support-function form is
-\begin{equation}
-a_j^\top z+b_j^\top v+
-orm{(a_j^\top+b_j^\top K)T^{-1}}_2s
-+
-orm{a_j^\top T^{-1}}_2\sqrt R\le c_j.
+The support function of a set $\mathcal E$ is
+\[
+h_{\mathcal E}(a):=\sup_{\xi\in\mathcal E}a^\top\xi,
+\]
+which gives its largest projection in direction $a$. For an affine constraint $a_j^\top x+b_j^\top u\le c_j$, substituting $x=z+\delta+e$ and $u=v+K\delta$ gives the uncertain contribution $(a_j^\top+b_j^\top K)\delta+a_j^\top e$. Evaluating the support functions over the two error balls, with $T^\top T=P$, defines the tightening constants
+\[
+c_{s,j}:=\norm{(a_j^\top+b_j^\top K)T^{-1}}_2,
+\qquad c_{e,j}:=\norm{a_j^\top T^{-1}}_2.
+\]
+The norms are Euclidean norms of the indicated row vectors. For fixed affine constraints, metric $P$, and gain $K$, these constants can be computed offline. The resulting tightened constraint is
+\begin{equation}\label{eq:affine-tightening}
+a_j^\top z+b_j^\top v
++\underbrace{c_{s,j}s}_{\text{tracking-error margin}}
++\underbrace{c_{e,j}\sqrt R}_{\text{estimation-error margin}}
+\le c_j.
 \end{equation}
-All tube/domain constraints hold continuously over the prediction horizon. An implementation using only shooting or collocation nodes needs an intersample guarantee.
-
-Let $H_p>0$ be the horizon and $0<h\le H_p$ the sampling period. At update $k$, minimize
+This expression evaluates the supremum exactly over the chosen product of estimation and tracking error balls. The margins vary along the prediction through $R$ and $s$.
+Using the time notation in Section II, the tightened state--input constraints~\eqref{eq:tightening} (or~\eqref{eq:affine-tightening} for affine constraints), certificate-domain conditions in Assumption~\ref{ass:domain}, and radius bounds $(R_t,s_t)\in\mathcal B$ are imposed for every $\tau\in[0,H_p]$.
+At update $t$, minimize the predicted horizon cost
 \begin{equation}\label{eq:cost}
-J_k=\int_0^{H_p}\ell(z(\tau),v(\tau))\,d\tau+V_f(z(H_p))
+J_t=\int_0^{H_p}\ell(z_t(\tau),v_t(\tau))\,d\tau+V_f(z_t(H_p)),
 \end{equation}
-subject to \eqref{eq:tubes}, \eqref{eq:tightening}, domain inclusion, $(R,s)\in\mathcal B$, and
+where $\ell$ is the stage-cost rate, its integral is the accumulated running cost, and $V_f$ is the terminal cost. Let $\bar R_t$ denote the certified squared estimation-error bound available at update $t$, satisfying $V_e(th)\le\bar R_t$. The prediction satisfies~\eqref{eq:tubes}, the constraints above, and
 \begin{equation}\label{eq:init}
-R(0)=\bar R_k,\qquad\norm{\hat x_k-z(0)}_P\le s(0),\qquad
-(z(H_p),R(H_p),s(H_p))\in\Omega_f.
+R_t(0)=\bar R_t,\quad \norm{\hat x_t-z_t(0)}_P\le s_t(0),\quad
+(z_t(H_p),R_t(H_p),s_t(H_p))\in\Omega_f.
 \end{equation}
-The initial nominal center is free. Apply $u=v_k^*(\tau)+K(\hat x-z_k^*(\tau))$ for $0\le\tau<h$, and carry $\bar R_{k+1}=R_k^*(h)$. Superscript $*$ denotes the selected plan; optimality is needed only for the optimal-value assertion below.
-
-\subsection{Terminal ingredients and conditional guarantees}
+The initial nominal center $z_t(0)$ is free. For the selected feasible plan, apply
+\[
+u_t(\tau)=v_t(\tau)+K\bigl(\hat x_t(\tau)-z_t(\tau)\bigr),\qquad 0\le\tau<h,
+\]
+and carry $\bar R_{t+1}=R_t(h)$. At the first update, $\bar R_0$ is supplied by the initial error bound in Assumption~\ref{ass:radii}. Starting from an initially feasible MPC problem, recursive feasibility and constraint satisfaction hold when the controller applies a feasible plan at each update; optimality is not required for these guarantees. Superscript $*$ denotes optimal plans and the minimum horizon cost in the cost-decrease inequality~\eqref{eq:decrease} of Theorem~\ref{thm:mpc}.
+\subsection{Terminal Ingredients and Recursive Feasibility}
 \begin{assumption}[Terminal ingredients]\label{ass:terminal}
-There exist a nonempty nominal terminal set $Z_f$ and controller $\kappa_f$ such that $\dot z=f_0(z,\kappa_f(z))$ leaves $Z_f$ invariant. For every $z\in Z_f$, the tightened and domain constraints hold at $R_{\max},s_{\max}$. For the cost assertion additionally assume $\ell,V_f\ge0$ and
+There exist a nonempty nominal terminal set $Z_f$ and controller $\kappa_f$ such that $\dot z=f_0(z,\kappa_f(z))$ leaves $Z_f$ invariant. For every $z\in Z_f$, with nominal input $v=\kappa_f(z)$, the tightened state--input constraints~\eqref{eq:tightening} and the certificate-domain conditions in Assumption~\ref{ass:domain} hold at $R=R_{\max}$ and $s=s_{\max}$. For the cost assertion additionally assume $\ell,V_f\ge0$ and
 \begin{equation}\label{eq:terminalcost}
 \nabla V_f(z)f_0(z,\kappa_f(z))\le-\ell(z,\kappa_f(z)).
 \end{equation}
 \end{assumption}
-Then $\Omega_f=Z_f\times\mathcal B$ is invariant under terminal control and the radius dynamics. This construction uses global radii only to certify the terminal set; local radii are retained along the horizon.
+Then $\Omega_f=Z_f\times\mathcal B$ is invariant under terminal control and the radius dynamics. The terminal set is certified using the largest admissible estimation and tracking radii. Since the smaller error balls are contained in these largest ones, this ensures terminal constraint satisfaction and certificate-domain containment for every $(R,s)\in\mathcal B$, while the predictions along the horizon retain their local, time-varying radii.
 
-\begin{theorem}[Conditional closed-loop properties]\label{thm:mpc}
-Suppose Assumptions~\ref{ass:domain}--\ref{ass:terminal} and the derivative inequalities hold exactly, and the initial MPC problem is feasible. Applying a feasible plan and the update \eqref{eq:init} at each sample gives recursive feasibility and continuous-time robust constraint satisfaction for all disturbances in the assumed sets. If \eqref{eq:terminalcost} holds and attained global minimizers are used, then
+\begin{theorem}[Recursive Feasibility and Robust Constraint Satisfaction]\label{thm:mpc}
+Suppose Assumptions~\ref{ass:domain}--\ref{ass:terminal} and the estimation-error inequality~\eqref{eq:local-observer-bound}, written as $\dot V_e\le-\lambda V_e+q(z,v,R,s)$, and tracking-error inequality~\eqref{eq:tracking-bound} hold exactly, and the initial MPC problem is feasible. Applying a feasible plan satisfying~\eqref{eq:init} and carrying $\bar R_{t+1}=R_t(h)$ at each update gives recursive feasibility and continuous-time robust constraint satisfaction for all disturbances in the assumed sets. If \eqref{eq:terminalcost} holds and the selected feasible plans attain the minimum horizon cost among all feasible plans, then
 \begin{equation}\label{eq:decrease}
-J_{k+1}^*\le J_k^*-\int_0^h\ell(z_k^*(\tau),v_k^*(\tau))\,d\tau.
+J_{t+1}^*\le J_t^*-\int_0^h\ell(z_t^*(\tau),v_t^*(\tau))\,d\tau.
 \end{equation}
 \end{theorem}
 \begin{proof}
-Shift the previous nominal input/state and both radius trajectories by $h$ on $[0,H_p-h]$. The carried prior makes the initial $R$ equality hold; Lemma~\ref{lem:tube} gives $\norm{\hat x_{k+1}-z_k^*(h)}_P\le s_k^*(h)$. Time invariance preserves the remaining constraints and dynamics. Append the terminal controller and radius dynamics for the final $h$ units of time. Terminal invariance gives a feasible tail and endpoint. Induction proves recursive feasibility. Lemma~\ref{lem:tube} and \eqref{eq:tightening} give actual constraint satisfaction on each applied interval. Integrating \eqref{eq:terminalcost} over the tail bounds its cost by the previous terminal cost; cancellation of the common horizon portion and optimality give \eqref{eq:decrease}.
+\textit{Feasible candidate at the next update.}
+Suppose the plan $(z_t,v_t,R_t,s_t)$ is feasible at update $t$. For $0\le\tau\le H_p-h$, define
+\[
+(z^c,v^c,R^c,s^c)(\tau)=(z_t,v_t,R_t,s_t)(\tau+h).
+\]
+The prescribed bound update and Lemma~\ref{lem:tube} give
+\[
+R^c(0)=R_t(h)=\bar R_{t+1},\qquad
+\norm{\hat x_{t+1}-z^c(0)}_P
+=\norm{\hat x_{t+1}-z_t(h)}_P\le s_t(h)=s^c(0).
+\]
+Thus both initialization conditions in~\eqref{eq:init} hold. On this shifted interval the candidate reproduces the previous feasible trajectory, so the time-invariant dynamics~\eqref{eq:tubes}, tightened constraints~\eqref{eq:tightening}, certificate-domain conditions, and radius bounds remain satisfied.
+
+At $\tau=H_p-h$, the candidate reaches the previous terminal point in $\Omega_f$. Over the remaining $h$ units of time, apply $v^c=\kappa_f(z^c)$ and continue the nominal and radius dynamics. Terminal invariance under Assumption~\ref{ass:terminal} and invariance of $\mathcal B$ keep this continuation in $\Omega_f$, where all tightened and domain constraints hold. Its endpoint therefore satisfies the new terminal condition. This constructs a feasible plan at update $t+1$; induction from initial feasibility proves recursive feasibility.
+
+\textit{Actual constraint satisfaction.}
+During each applied interval, Lemma~\ref{lem:tube} gives $\norm e_P\le\sqrt{R_t(\tau)}$ and $\norm\delta_P\le s_t(\tau)$. The actual pair satisfies $x=z_t+\delta+e$ and $u=v_t+K\delta$, and hence belongs to the set over which~\eqref{eq:tightening} takes its supremum. Consequently,
+\[
+g_j(x,u)\le
+\sup_{\norm e_P\le\sqrt{R_t(\tau)},\ \norm\delta_P\le s_t(\tau)}
+g_j(z_t(\tau)+\delta+e,v_t(\tau)+K\delta)\le0.
+\]
+This holds throughout every applied interval and for all admissible disturbances.
+
+\textit{Optimal-cost decrease.}
+Now take an optimal plan at update $t$. Let $z_f(\sigma)$, $0\le\sigma\le h$, be the appended terminal trajectory, with $z_f(0)=z_t^*(H_p)$ and input $\kappa_f(z_f)$. The shifted candidate has cost
+\[
+\begin{aligned}
+J_{t+1}^{c}
+={}&\int_h^{H_p}\ell(z_t^*(\tau),v_t^*(\tau))\,d\tau\\
+&+\int_0^h\ell(z_f(\sigma),\kappa_f(z_f(\sigma)))\,d\sigma+V_f(z_f(h)).
+\end{aligned}
+\]
+Integrating~\eqref{eq:terminalcost} along the terminal continuation gives
+\[
+\int_0^h\ell(z_f(\sigma),\kappa_f(z_f(\sigma)))\,d\sigma
++V_f(z_f(h))\le V_f(z_t^*(H_p)).
+\]
+The terminal-cost decrease therefore covers the accumulated stage cost of the appended interval. Substituting this bound and comparing with~\eqref{eq:cost} yields
+\[
+\begin{aligned}
+J_{t+1}^{c}
+&\le\int_h^{H_p}\ell(z_t^*(\tau),v_t^*(\tau))\,d\tau+V_f(z_t^*(H_p))\\
+&=J_t^*-\int_0^h\ell(z_t^*(\tau),v_t^*(\tau))\,d\tau.
+\end{aligned}
+\]
+Since the next optimal cost is no greater than the cost of this feasible candidate, $J_{t+1}^*\le J_{t+1}^{c}$, which establishes~\eqref{eq:decrease}.
 \end{proof}
-A feasible fallback suffices for feasibility. A suboptimal solver preserves the analogous selected-plan cost decrease if its accepted cost is no larger than the shifted candidate cost. Radius penalties are absent from \eqref{eq:cost}; including them requires a compatible augmented terminal-cost inequality.
+The shifted-and-extended candidate provides a feasible fallback. If a suboptimal solver returns a feasible plan whose horizon cost does not exceed the candidate cost, the same argument establishes the cost-decrease inequality for the selected plans.
 
 \begin{remark}[Relation to Section IV of \cite{kohler2021}]
-Equation (26) of that paper predicts nominal states/inputs and both error bounds with a free initial nominal center. Its Theorem 4 uses monotonicity and nestedness when online updates reduce the initial bounds. Our conservative bookkeeping carries the predicted estimation bound exactly and permits the old tracking bound, so an identical shifted radius trajectory is feasible without this extra comparison step. Its Section IV-C treats resetting the nominal center using a different candidate and stronger terminal conditions; the present theorem does not establish that reset variant. Unlike its discrete-time global-forcing prediction, the proposed $q$ depends on the predicted operating tube.
-\end{remark}
-The value decrease alone is not a full true-state asymptotic-stability theorem: nominal recentering can introduce jumps, and persistent uncertainty remains. Equation~\eqref{eq:total} gives
-$\norm{x-x_{\rm ref}}_P\le\norm{z-x_{\rm ref}}_P+\sqrt R+s$.
-Further convergence assumptions and analysis are needed for a practical-stability conclusion.
+Section IV-B of~\cite{kohler2021}, Eq.~(26), jointly predicts the nominal state/input and estimation and tracking bounds with a free initial nominal center. Using $z$ for that reference's nominal state, its Eq.~(26b) and the candidate construction in Theorem~4 of~\cite{kohler2021} give
+\[
+z_{0|t+1}^{c}=z_{1|t}^{*},\qquad
+\bar s_{0|t+1}^{c}=V_\delta(z_{1|t}^{*},\hat x_{t+1})\le\bar s_{1|t}^{*}.
+\]
+The online estimation update also ensures $\bar e_{t+1}\le\bar e_{1|t}^{*}$. Monotonic propagation of these bounds preserves inclusion in the previously predicted tubes. Here $k|t$ denotes prediction step $k$ at update $t$ in the discrete-time notation of~\cite{kohler2021}. Its bounds $\bar e,\bar s$ use general Lyapunov functions and need not share the numerical scaling of our $R,s$.
 
+Our continuous-time formulation carries the estimation bound and permits the shifted candidate
+\[
+\bar R_{t+1}=R_t(h),\qquad
+z_{t+1}^{c}(0)=z_t(h),\qquad s_{t+1}^{c}(0)=s_t(h).
+\]
+This construction does not exploit additional reductions in the available estimation bound or the measured initial tracking mismatch. It simplifies the feasibility proof but can retain larger initial bounds than a scheme that incorporates those reductions. The optimizer remains free to choose a smaller feasible tracking radius. This comparison concerns the bound-update mechanism; the proposed state-dependent forcing can reduce future bounds.
+
+Section IV-C of~\cite{kohler2021}, Eq.~(32b), instead resets the nominal center:
+\[
+z_{0|t}=\hat x_t,\qquad \bar s_{0|t}=0.
+\]
+Theorem~5 of~\cite{kohler2021} establishes recursive feasibility for that formulation using a modified candidate and the terminal conditions in Assumption~9 of~\cite{kohler2021}. The present theorem treats the free-center formulation.
+\end{remark}
+The horizon-cost decrease in~\eqref{eq:decrease} bounds the accumulated nominal running cost. By~\eqref{eq:total}, the true-state deviation satisfies
+\[
+\norm{x-x_{\rm ref}}_P\le\norm{z-x_{\rm ref}}_P+\sqrt R+s.
+\]
+Consequently, if the applied nominal trajectory converges to $x_{\rm ref}$, then
+\[
+\limsup_{t\to\infty}\norm{x(t)-x_{\rm ref}}_P
+\le\sqrt{R_{\max}}+s_{\max},
+\]
+where $t$ denotes continuous time. Nominal convergence is an additional condition here; it is not established by the cost-decrease inequality alone.
 \section{Numerical Example: Falcon Model}
 \subsection{Model and reproduced offline design}
 The example uses the repository \cite{rohmpc} and the saved Falcon design from 10 September 2026. The 12-state model consists of position, attitude, translational velocity, and body angular velocity, with four rotor inputs. The nominal translational drag matrix is zero in this instance. Its Jacobians are therefore independent of translational velocity; this does not restrict the controller to hovering. The velocity domain is $[-2,2]^3$ m/s, giving $v_{\max}=\sqrt{12}$ m/s.
@@ -297,8 +510,14 @@ The original 1024-point Jacobian grid varies four rotor inputs, three angles, an
 
 The reproduced robust-design and terminal-cost SDPs returned \texttt{OPTIMAL}, with objectives 1494.858118 and 38.564610, respectively. The first is a weighted combination of normalized squared tightening coefficients and squared estimation radius, not an optimized contraction rate. The second minimizes the trace of the terminal-cost matrix. Solver success does not ensure useful tightened constraints: the reproduced motor-input half-width was approximately 0.1200, whereas the associated global margin was 0.4619, leaving negative available width. Consequently, this design has not supplied the nonempty terminal set required by Theorem~\ref{thm:mpc}.
 
-\subsection{Prescribed local uncertainty and parameters}
-Only the centered acceleration disturbance channels 7--9 are scaled. Other process channels, measurement noise, and the nominal bias remain unchanged. We use $\beta=0.25$ and the velocity law in Section III-C. This is a synthetic uncertainty model, not a new identification or UQ result. The experiment reuses the saved $X,P,L,K,W,H,\lambda$ and solves no new SDP.
+\subsection{Prescribed local uncertainty and parameters}\label{sec:falcon-uncertainty}
+For the Falcon state ordering (position, attitude, translational velocity, body angular velocity), the velocity selector and disturbance scaling matrix are
+\[
+S_v=\begin{bmatrix}0_{3\times6}&I_3&0_{3\times3}\end{bmatrix},
+\qquad D(a)=\diag(I_6,aI_3,I_3).
+\]
+The scaled disturbance components enter the translational acceleration equations.
+Only the centered acceleration disturbance components 7--9 are scaled. Other process-disturbance components, measurement noise, and the nominal bias remain unchanged. We use $\beta=0.25$ and the velocity law in Section III-C. This is a synthetic uncertainty model, not a new identification or UQ result. The experiment reuses the saved $X,P,L,K,W,H,\lambda$ and solves no new SDP.
 \begin{table}[htbp]\centering
 \caption{Saved certificate and local-envelope parameters (rounded).}
 \begin{tabular}{lr}\toprule
@@ -333,6 +552,7 @@ The final estimation-radius reduction is $100(1-r_{\rm local}/\epsilon)=6.68019\
 The earlier separate-norm prototype produced a global equilibrium radius of approximately 0.105718 and a final local radius of 0.0979251, both above the original 0.0744264. These values belong to a different bound construction and do not indicate empirical calibration of the original $\epsilon$. The quadratic-envelope approach restores a baseline-equivalent comparison.
 
 \subsection{Numerical checks and limitations}
+A numerical MPC implementation that checks constraints only at selected prediction times must additionally establish constraint satisfaction between those times. The continuous-time formulation in Section IV-B imposes them throughout the horizon.
 The current experiment checks all 4096 original process vertices, all noise vertices, the 1024 original dynamics points, and all process vertices at 31 scale values. It additionally evaluates 1968 admissible random nonlinear error configurations. Table~\ref{tab:residuals} reports the saved residuals.
 \begin{table}[htbp]\centering
 \caption{Numerical audit; positive matrix residuals are tolerated numerically, not exact certificates.}
@@ -351,7 +571,132 @@ The saved feasibility tolerance is $10^{-6}$. Small positive residuals mean feas
 \section{Conclusion}
 A fixed observer certificate can support locally reduced process forcing through a Schur-complement envelope construction. Coupling this forcing to a tracking radius yields a candidate state-dependent output-feedback MPC formulation with conditional recursive-feasibility and safety guarantees. The Falcon radius experiment demonstrates a smaller local bound relative to a baseline-equivalent global propagation. Remaining work is to certify the continuous domain and numerical margins, validate the local uncertainty model, construct compatible nonempty terminal ingredients, and then implement and evaluate the closed-loop controller.
 
+\begin{thebibliography}{9}
+\bibitem{kohler2021} J. K\"ohler, M. A. M\"uller, and F. Allg\"ower,
+``Robust output feedback model predictive control using online estimation bounds,''
+arXiv:2105.03427v1, 2021. Section IV, Proposition 2, Assumption 7, and Theorems 4--5.
+\bibitem{benders2025} D. Benders, J. K\"ohler, R. Babu\v{s}ka, J. Alonso-Mora, and L. Ferranti,
+``From Data to Safe Mobile Robot Navigation: An Efficient and Modular Robust MPC Design Pipeline,''
+arXiv:2508.07045v1, 2025. \url{https://arxiv.org/abs/2508.07045}.
+\bibitem{rohmpc} D. Benders et al., ROHMPC code repository,
+\url{https://github.com/dbenders1/rohmpc}. Numerical inputs and saved outputs from the local reproduction of 10 September 2026.
+\end{thebibliography}
+
+\clearpage
 \appendix
+\section*{APPENDIX}
+\renewcommand{\thesection}{\Alph{section}}
+\section{Derivation of the Tracking-Error Bound}\label{app:tracking-bound}
+Recall $\delta=\hat x-z$, $e=x-\hat x$, and $u=v+K\delta$. Subtracting the nominal dynamics from the observer dynamics gives
+\begin{equation}\label{eq:appendix-delta}
+\dot\delta=f_0(\hat x,u)-f_0(z,v)+LCe+LF\eta.
+\end{equation}
+For fixed $z,v,\delta$, parameterize the straight-line state--input segment by
+\[
+x_\theta=z+\theta\delta,\qquad
+u_\theta=v+\theta K\delta,\qquad 0\le\theta\le1.
+\]
+Here $\theta$ parameterizes a segment in state--input space, not time. Its endpoints are $(z,v)$ and $(\hat x,u)$. With $A=\partial f_0/\partial x$ and $B=\partial f_0/\partial u$, integration along this segment yields
+\begin{align}
+f_0(\hat x,u)-f_0(z,v)
+&=\int_0^1\bigl[A(x_\theta,u_\theta)+B(x_\theta,u_\theta)K\bigr]\delta\,d\theta\\
+&=\bar A_K\delta,\qquad
+\bar A_K:=\int_0^1\bigl[A(x_\theta,u_\theta)+B(x_\theta,u_\theta)K\bigr]d\theta.
+\end{align}
+The domain assumptions ensure the contraction inequality holds at every point of this segment. Integrating it and using constant $P$ gives
+\begin{equation}
+\bar A_K^\top P+P\bar A_K\preceq-2\rho P.
+\end{equation}
+Define $d_o:=LCe+LF\eta$. Then \eqref{eq:appendix-delta} becomes $\dot\delta=\bar A_K\delta+d_o$. For $\ell_\delta:=\norm\delta_P=\sqrt{\delta^\top P\delta}>0$,
+\begin{align}
+\dot\ell_\delta
+&=\frac{\delta^\top P\dot\delta}{\ell_\delta}\\
+&=\frac{\delta^\top P\bar A_K\delta}{\ell_\delta}
++\frac{\delta^\top Pd_o}{\ell_\delta}.
+\end{align}
+The contraction contribution satisfies
+\[
+\delta^\top P\bar A_K\delta
+=\frac12\delta^\top(P\bar A_K+\bar A_K^\top P)\delta
+\le-\rho\ell_\delta^2.
+\]
+For the forcing contribution, $T^\top T=P$ and the Cauchy--Schwarz inequality imply
+\[
+\frac{\delta^\top Pd_o}{\ell_\delta}
+=\frac{(T\delta)^\top(Td_o)}{\norm{T\delta}_2}
+\le\norm{Td_o}_2.
+\]
+The triangle inequality and the definitions of $\gamma$ and $b_\eta$ give
+\begin{align}
+\norm{Td_o}_2
+&\le\norm{TLCe}_2+\norm{TLF\eta}_2\\
+&\le\norm{TLC T^{-1}}_2\norm{Te}_2
++\max_{\eta\in\mathcal N}\norm{TLF\eta}_2\\
+&=\gamma\sqrt{V_e}+b_\eta.
+\end{align}
+Combining these estimates establishes
+\begin{equation}
+\frac{d}{dt}\norm\delta_P
+\le-\rho\norm\delta_P+\gamma\sqrt{V_e}+b_\eta,
+\end{equation}
+which is \eqref{eq:tracking-bound}. The calculation involving division by $\ell_\delta$ applies when $\delta\ne0$. Along absolutely continuous trajectories, the norm is absolutely continuous and its derivative is zero almost everywhere on the set where the norm vanishes. Since the forcing bound is nonnegative, the same inequality therefore holds almost everywhere in time, including that zero set.
+
+Finally, $V_e\le R$ gives the comparison dynamics
+\[
+\dot s=-\rho s+\gamma\sqrt R+b_\eta,
+\qquad s(0)\ge\norm{\delta(0)}_P.
+\]
+Subtracting this equation from the norm inequality and applying an integrating factor yields
+\[
+\norm{\delta(t)}_P-s(t)
+\le e^{-\rho t}\bigl(\norm{\delta(0)}_P-s(0)\bigr)\le0,
+\]
+provided the estimation bound and certificate-domain conditions remain valid, as required in the coupled containment argument.
+
+\section{Comparison of Local and Global Radius Bounds}\label{app:radius-comparison}
+Consider the same nominal state and input trajectories $z(t),v(t)$, identical initial radius values, and the same metric, gains, and constants $\lambda,\rho,\gamma,b_\eta$ in both propagations. Define the local estimation-error forcing along its radius trajectory by
+\[
+q_{\rm local}(t):=q\bigl(z(t),v(t),R_{\rm local}(t),s_{\rm local}(t)\bigr).
+\]
+For the envelope construction in Proposition~\ref{prop:local}, $q_{\rm local}(t)\le q_0$, where $q_0=\lambda\epsilon^2$ is the global baseline forcing bound. The comparison below holds on any interval on which both propagations are well-defined and their domain assumptions hold.
+
+The squared estimation radii satisfy
+\begin{align}
+\dot R_{\rm local}&=-\lambda R_{\rm local}+q_{\rm local}(t),\\
+\dot R_{\rm global}&=-\lambda R_{\rm global}+q_0,
+\qquad R_{\rm local}(0)=R_{\rm global}(0).
+\end{align}
+Let $\Delta_R=R_{\rm local}-R_{\rm global}$. Subtracting the equations and multiplying by $e^{\lambda t}$ gives
+\[
+\frac{d}{dt}\bigl(e^{\lambda t}\Delta_R(t)\bigr)
+=e^{\lambda t}\bigl(q_{\rm local}(t)-q_0\bigr).
+\]
+Integration, using $\Delta_R(0)=0$, yields
+\begin{equation}\label{eq:radius-ordering}
+R_{\rm local}(t)-R_{\rm global}(t)
+=\int_0^t e^{-\lambda(t-\tau)}\bigl(q_{\rm local}(\tau)-q_0\bigr)\,d\tau
+\le0.
+\end{equation}
+The inequality follows because the exponential is positive and the forcing difference is nonpositive. This argument permits $q_{\rm local}$ to depend on the local radius trajectory; it only uses its upper bound by $q_0$.
+
+The corresponding tracking radii satisfy
+\begin{align}
+\dot s_{\rm local}&=-\rho s_{\rm local}+\gamma\sqrt{R_{\rm local}}+b_\eta,\\
+\dot s_{\rm global}&=-\rho s_{\rm global}+\gamma\sqrt{R_{\rm global}}+b_\eta,
+\qquad s_{\rm local}(0)=s_{\rm global}(0).
+\end{align}
+Subtracting and applying the integrating factor $e^{\rho t}$ similarly gives
+\begin{equation}\label{eq:tracking-radius-ordering}
+\begin{aligned}
+s_{\rm local}(t)-s_{\rm global}(t)
+&=\gamma\int_0^t e^{-\rho(t-\tau)}
+\left(\sqrt{R_{\rm local}(\tau)}-\sqrt{R_{\rm global}(\tau)}\right)d\tau\\
+&\le0.
+\end{aligned}
+\end{equation}
+Here \eqref{eq:radius-ordering}, nonnegative radii, and $\gamma\ge0$ establish the final inequality. Consequently, under the common nominal trajectories and initialization, both predicted error bounds in the local formulation are no larger than their global baseline counterparts.
+% Appendix C hidden in sharing draft; change false to true to restore.
+\iffalse
 \section{Reproducibility and Source Map}
 All paths below are relative to the repository root. The baseline is
 \path{work/offline-sanity-20260910/offline_design.mat}.
@@ -368,12 +713,49 @@ Its \path{main.m} orchestrates the design;
 
 To rerun the current experiment, configure MATLAB with CasADi, add the research directory to the path, and call \texttt{run\_lmi\_radius\_recovery}. The existing saved design is required. Reproducing the offline SDPs additionally requires YALMIP and an SDP solver such as MOSEK. Neither the private simulator submodule nor FORCESPRO is required for the reported radius experiment.
 
-\begin{thebibliography}{9}
-\bibitem{kohler2021} J. K\"ohler, M. A. M\"uller, and F. Allg\"ower,
-``Robust output feedback model predictive control using online estimation bounds,''
-arXiv:2105.03427v1, 2021. Section IV, Proposition 2, Assumption 7, and Theorems 4--5.
-\bibitem{rohmpc} D. Benders et al., ROHMPC code repository,
-\url{https://github.com/dbenders1/rohmpc}. Numerical inputs and saved outputs from the local reproduction of 10 September 2026. Repository source is cited for implementation provenance; the present numerical audit does not establish its full theoretical assumptions.
-\end{thebibliography}
+
+\fi
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

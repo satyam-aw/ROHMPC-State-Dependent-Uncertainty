@@ -1,0 +1,234 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(state_dependent_rohmpc.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-03-20>
+(/home/satyam/.miktex/texmfs/install/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/home/satyam/.miktex/texmfs/install/tex/latex/base/size11.clo))
+(/home/satyam/.miktex/texmfs/install/tex/latex/geometry/geometry.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/keyval.sty)
+(/home/satyam/.miktex/texmfs/install/tex/generic/iftex/ifvtex.sty
+(/home/satyam/.miktex/texmfs/install/tex/generic/iftex/iftex.sty))
+(/home/satyam/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg))
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amstext.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsgen.sty))
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsbsy.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsopn.sty))
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/amssymb.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/share/miktex-texmf/tex/latex/amscls/amsthm.sty)
+(/usr/local/share/miktex-texmf/tex/latex/mathtools/mathtools.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/tools/calc.sty)
+(/usr/local/share/miktex-texmf/tex/latex/mathtools/mhsetup.sty))
+(/home/satyam/.miktex/texmfs/install/tex/latex/booktabs/booktabs.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/graphicx.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/graphics.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/trig.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics-cfg/graphics.cfg)
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics-def/pdftex.def)))
+(/home/satyam/.miktex/texmfs/install/tex/latex/base/fontenc.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/lmodern.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/etoolbox/etoolbox.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype-pdftex.def)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype.cfg))
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/hyperref.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/home/satyam/.miktex/texmfs/install/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+ (/home/satyam/.miktex/texmfs/install/tex/generic/pdfescape/pdfescape.sty
+(/home/satyam/.miktex/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty)
+(/home/satyam/.miktex/texmfs/install/tex/generic/pdftexcmds/pdftexcmds.sty
+(/home/satyam/.miktex/texmfs/install/tex/generic/infwarerr/infwarerr.sty)))
+(/home/satyam/.miktex/texmfs/install/tex/latex/hycolor/hycolor.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/nameref.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/refcount/refcount.sty)
+(/home/satyam/.miktex/texmfs/install/tex/generic/gettitlestring/gettitlestring.
+sty (/home/satyam/.miktex/texmfs/install/tex/latex/kvoptions/kvoptions.sty)))
+(/home/satyam/.miktex/texmfs/install/tex/generic/stringenc/stringenc.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/pd1enc.def)
+(/home/satyam/.miktex/texmfs/install/tex/generic/intcalc/intcalc.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/puenc.def)
+(/home/satyam/.miktex/texmfs/install/tex/latex/url/url.sty)
+(/home/satyam/.miktex/texmfs/install/tex/generic/bitset/bitset.sty
+(/home/satyam/.miktex/texmfs/install/tex/generic/bigintcalc/bigintcalc.sty)))
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/hpdftex.def
+(/home/satyam/.miktex/texmfs/install/tex/latex/rerunfilecheck/rerunfilecheck.st
+y
+(/home/satyam/.miktex/texmfs/install/tex/generic/uniquecounter/uniquecounter.st
+y))) (/home/satyam/.miktex/texmfs/install/tex/latex/enumitem/enumitem.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmr.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/l3backend-dev/l3backend-pdftex.d
+ef) (state_dependent_rohmpc.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/home/satyam/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/home/satyam/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg))
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-cmr.cfg)
+(state_dependent_rohmpc.out) (state_dependent_rohmpc.out)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/ot1lmr.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/omllmm.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/omslmsy.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/omxlmex.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-msa.cfg)
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-msb.cfg) [1{/home/s
+atyam/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}{/home/satyam/.miktex/tex
+mfs/install/fonts/enc/dvips/lm/lm-ec.enc}{/home/satyam/.miktex/texmfs/install/f
+onts/enc/dvips/lm/lm-rm.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvip
+s/lm/lm-mathit.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-m
+athsy.enc}] [2{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathex
+.enc}] (/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd) [3]
+[4] [5]
+Overfull \hbox (4.70792pt too wide) in paragraph at lines 296--297
+\T1/lmr/m/n/10.95 (-20) alternative estimation-error bound obtained by bounding
+ the process-disturbance and measurement-
+[6] [7] [8] [9] [10]
+Overfull \hbox (10.73955pt too wide) in paragraph at lines 518--536
+\T1/lmr/m/n/10.95 (-20) centered acceleration disturbance components 7--9 are s
+caled. Other process-disturbance components,
+[11] [12] [13 <./falcon_tube_comparison.png (PNG copy)>] [14] [15] [16]
+(state_dependent_rohmpc.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)</home/satyam/.miktex/texmf
+s/install/fonts/type1/public/lm/lmbx10.pfb></home/satyam/.miktex/texmfs/install
+/fonts/type1/public/lm/lmbx12.pfb></home/satyam/.miktex/texmfs/install/fonts/ty
+pe1/public/lm/lmex10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/publi
+c/lm/lmmi10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi
+6.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi8.pfb></ho
+me/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr10.pfb></home/satyam/
+.miktex/texmfs/install/fonts/type1/public/lm/lmr12.pfb></home/satyam/.miktex/te
+xmfs/install/fonts/type1/public/lm/lmr17.pfb></home/satyam/.miktex/texmfs/insta
+ll/fonts/type1/public/lm/lmr6.pfb></home/satyam/.miktex/texmfs/install/fonts/ty
+pe1/public/lm/lmr8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/
+lm/lmri10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmsy10
+.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmsy8.pfb></hom
+e/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmtt10.pfb></home/satyam/
+.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on state_dependent_rohmpc.pdf (16 pages, 519621 bytes).
+Transcript written on state_dependent_rohmpc.log.
+pdflatex: major issue: So far, you have not checked for updates as a MiKTeX user.
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(state_dependent_rohmpc.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-03-20>
+(/home/satyam/.miktex/texmfs/install/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/home/satyam/.miktex/texmfs/install/tex/latex/base/size11.clo))
+(/home/satyam/.miktex/texmfs/install/tex/latex/geometry/geometry.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/keyval.sty)
+(/home/satyam/.miktex/texmfs/install/tex/generic/iftex/ifvtex.sty
+(/home/satyam/.miktex/texmfs/install/tex/generic/iftex/iftex.sty))
+(/home/satyam/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg))
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amstext.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsgen.sty))
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsbsy.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsmath/amsopn.sty))
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/amssymb.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/share/miktex-texmf/tex/latex/amscls/amsthm.sty)
+(/usr/local/share/miktex-texmf/tex/latex/mathtools/mathtools.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/tools/calc.sty)
+(/usr/local/share/miktex-texmf/tex/latex/mathtools/mhsetup.sty))
+(/home/satyam/.miktex/texmfs/install/tex/latex/booktabs/booktabs.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/graphicx.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/graphics.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics/trig.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics-cfg/graphics.cfg)
+(/home/satyam/.miktex/texmfs/install/tex/latex/graphics-def/pdftex.def)))
+(/home/satyam/.miktex/texmfs/install/tex/latex/base/fontenc.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/lmodern.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/etoolbox/etoolbox.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype-pdftex.def)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/microtype.cfg))
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/hyperref.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/home/satyam/.miktex/texmfs/install/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+ (/home/satyam/.miktex/texmfs/install/tex/generic/pdfescape/pdfescape.sty
+(/home/satyam/.miktex/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty)
+(/home/satyam/.miktex/texmfs/install/tex/generic/pdftexcmds/pdftexcmds.sty
+(/home/satyam/.miktex/texmfs/install/tex/generic/infwarerr/infwarerr.sty)))
+(/home/satyam/.miktex/texmfs/install/tex/latex/hycolor/hycolor.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/nameref.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/refcount/refcount.sty)
+(/home/satyam/.miktex/texmfs/install/tex/generic/gettitlestring/gettitlestring.
+sty (/home/satyam/.miktex/texmfs/install/tex/latex/kvoptions/kvoptions.sty)))
+(/home/satyam/.miktex/texmfs/install/tex/generic/stringenc/stringenc.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/pd1enc.def)
+(/home/satyam/.miktex/texmfs/install/tex/generic/intcalc/intcalc.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/puenc.def)
+(/home/satyam/.miktex/texmfs/install/tex/latex/url/url.sty)
+(/home/satyam/.miktex/texmfs/install/tex/generic/bitset/bitset.sty
+(/home/satyam/.miktex/texmfs/install/tex/generic/bigintcalc/bigintcalc.sty)))
+(/home/satyam/.miktex/texmfs/install/tex/latex/hyperref/hpdftex.def
+(/home/satyam/.miktex/texmfs/install/tex/latex/rerunfilecheck/rerunfilecheck.st
+y
+(/home/satyam/.miktex/texmfs/install/tex/generic/uniquecounter/uniquecounter.st
+y))) (/home/satyam/.miktex/texmfs/install/tex/latex/enumitem/enumitem.sty)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmr.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/l3backend-dev/l3backend-pdftex.d
+ef) (state_dependent_rohmpc.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/home/satyam/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/home/satyam/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/home/satyam/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg))
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-cmr.cfg)
+(state_dependent_rohmpc.out) (state_dependent_rohmpc.out)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/ot1lmr.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/omllmm.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/omslmsy.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/omxlmex.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-msa.cfg)
+(/home/satyam/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd)
+(/home/satyam/.miktex/texmfs/install/tex/latex/microtype/mt-msb.cfg) [1{/home/s
+atyam/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}{/home/satyam/.miktex/tex
+mfs/install/fonts/enc/dvips/lm/lm-ec.enc}{/home/satyam/.miktex/texmfs/install/f
+onts/enc/dvips/lm/lm-rm.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvip
+s/lm/lm-mathit.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-m
+athsy.enc}] [2{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathex
+.enc}] (/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd) [3]
+[4] [5]
+Overfull \hbox (4.70792pt too wide) in paragraph at lines 296--297
+\T1/lmr/m/n/10.95 (-20) alternative estimation-error bound obtained by bounding
+ the process-disturbance and measurement-
+[6] [7] [8] [9] [10]
+Overfull \hbox (10.73955pt too wide) in paragraph at lines 518--536
+\T1/lmr/m/n/10.95 (-20) centered acceleration disturbance components 7--9 are s
+caled. Other process-disturbance components,
+[11] [12] [13 <./falcon_tube_comparison.png (PNG copy)>] [14] [15] [16]
+(state_dependent_rohmpc.aux) )
+(see the transcript file for additional information)</home/satyam/.miktex/texmf
+s/install/fonts/type1/public/lm/lmbx10.pfb></home/satyam/.miktex/texmfs/install
+/fonts/type1/public/lm/lmbx12.pfb></home/satyam/.miktex/texmfs/install/fonts/ty
+pe1/public/lm/lmex10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/publi
+c/lm/lmmi10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi
+6.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi8.pfb></ho
+me/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr10.pfb></home/satyam/
+.miktex/texmfs/install/fonts/type1/public/lm/lmr12.pfb></home/satyam/.miktex/te
+xmfs/install/fonts/type1/public/lm/lmr17.pfb></home/satyam/.miktex/texmfs/insta
+ll/fonts/type1/public/lm/lmr6.pfb></home/satyam/.miktex/texmfs/install/fonts/ty
+pe1/public/lm/lmr8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/
+lm/lmri10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmsy10
+.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmsy8.pfb></hom
+e/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmtt10.pfb></home/satyam/
+.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on state_dependent_rohmpc.pdf (16 pages, 519621 bytes).
+Transcript written on state_dependent_rohmpc.log.
+pdflatex: major issue: So far, you have not checked for updates as a MiKTeX user.

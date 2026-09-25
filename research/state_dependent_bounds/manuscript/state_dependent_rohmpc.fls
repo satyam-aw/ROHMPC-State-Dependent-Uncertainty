@@ -204,14 +204,16 @@ INPUT /home/satyam/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map
 INPUT /home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmri10.tfm
 INPUT /home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmbx10.tfm
+INPUT /home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmr8.tfm
+INPUT /home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmr6.tfm
 INPUT /home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-rm.enc
 INPUT /home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathsy.enc
-INPUT /home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathex.enc
 INPUT /home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd
 INPUT /home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd
 INPUT /home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd
 INPUT /home/satyam/.miktex/texmfs/install/fonts/tfm/public/lm/ec-lmtt10.tfm
+INPUT /home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathex.enc
 INPUT ./falcon_tube_comparison.png
 INPUT ./falcon_tube_comparison.png
 INPUT ./falcon_tube_comparison.png
