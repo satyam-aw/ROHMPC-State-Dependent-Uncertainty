@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.9.23)  25 SEP 2026 09:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.9.23)  8 OCT 2026 12:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -590,38 +590,32 @@ ktex/texmfs/install/fonts/enc/dvips/lm/lm-ec.enc}{/home/satyam/.miktex/texmfs/i
 nstall/fonts/enc/dvips/lm/lm-rm.enc}{/home/satyam/.miktex/texmfs/install/fonts/
 enc/dvips/lm/lm-mathit.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips
 /lm/lm-mathsy.enc}] [2{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/l
-m-mathex.enc}]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-04.
- (/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd
+m-mathex.enc}] [3] [4] [5] [6] [7] [8] [9] [10] [11]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
+55.
+
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [3]
-[4] [5]
-Overfull \hbox (4.70792pt too wide) in paragraph at lines 296--297
-\T1/lmr/m/n/10.95 (-20) alternative estimation-error bound obtained by bounding
- the process-disturbance and measurement-
- []
 
-[6] [7] [8] [9] [10]
-Overfull \hbox (10.73955pt too wide) in paragraph at lines 518--536
+Overfull \hbox (10.73955pt too wide) in paragraph at lines 564--582
 \T1/lmr/m/n/10.95 (-20) centered acceleration disturbance components 7--9 are s
 caled. Other process-disturbance components,
  []
 
-[11]
-<falcon_tube_comparison.png, id=273, 899.7615pt x 549.252pt>
+[12]
+<falcon_tube_comparison.png, id=290, 899.7615pt x 549.252pt>
 File: falcon_tube_comparison.png Graphic file (type png)
 <use falcon_tube_comparison.png>
-Package pdftex.def Info: falcon_tube_comparison.png  used on input line 549.
+Package pdftex.def Info: falcon_tube_comparison.png  used on input line 595.
 (pdftex.def)             Requested size: 437.0374pt x 266.78079pt.
- [12] [13 <./falcon_tube_comparison.png (PNG copy)>] [14] [15
+ [13] [14 <./falcon_tube_comparison.png (PNG copy)>] [15] [16
 
-] [16]
+] [17]
 (state_dependent_rohmpc.aux)
  ***********
 LaTeX2e <2025-11-01>
@@ -629,16 +623,16 @@ L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `state_dependent_rohmpc.out' has not changed.
 
-(rerunfilecheck)             Checksum: 0C102C5A2FF5110B7DA3B82D43ED1E4E;5088.
+(rerunfilecheck)             Checksum: 2D42A97A93DD5AD591F43BAAD5FE3E65;4984.
  ) 
 Here is how much of TeX's memory you used:
- 14027 strings out of 469628
- 220585 string characters out of 5466922
- 682115 words of memory out of 5000000
- 42331 multiletter control sequences out of 15000+600000
- 686211 words of font info for 181 fonts, out of 8000000 for 9000
+ 14044 strings out of 469628
+ 220867 string characters out of 5466922
+ 682540 words of memory out of 5000000
+ 42339 multiletter control sequences out of 15000+600000
+ 686681 words of font info for 183 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 75i,14n,79p,1098b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,14n,79p,1098b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmbx10.pfb></home/
 satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmbx12.pfb></home/satyam/.m
 iktex/texmfs/install/fonts/type1/public/lm/lmex10.pfb></home/satyam/.miktex/tex
@@ -651,12 +645,13 @@ e/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr6.pfb></home/satyam/.m
 iktex/texmfs/install/fonts/type1/public/lm/lmr8.pfb></home/satyam/.miktex/texmf
 s/install/fonts/type1/public/lm/lmri10.pfb></home/satyam/.miktex/texmfs/install
 /fonts/type1/public/lm/lmsy10.pfb></home/satyam/.miktex/texmfs/install/fonts/ty
-pe1/public/lm/lmsy8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public
-/lm/lmtt10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/amsfonts
-/symbols/msbm10.pfb>
-Output written on state_dependent_rohmpc.pdf (16 pages, 519621 bytes).
+pe1/public/lm/lmsy6.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public
+/lm/lmsy8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmtt10
+.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/m
+sbm10.pfb>
+Output written on state_dependent_rohmpc.pdf (17 pages, 533828 bytes).
 PDF statistics:
- 426 PDF objects out of 1000 (max. 8388607)
- 115 named destinations out of 1000 (max. 500000)
+ 447 PDF objects out of 1000 (max. 8388607)
+ 120 named destinations out of 1000 (max. 500000)
  29366 words of extra memory for PDF output out of 29859 (max. 10000000)
 
