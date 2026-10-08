@@ -85,12 +85,13 @@ The nominal model $f_0$ is continuously differentiable in state and input. Given
 This assumption ensures that the state trajectories used in the error analysis are uniquely defined for the specified initial conditions and admissible signals.
 \section{State-Dependent Estimation Error Bounds}
 \subsection{Recovering the global quadratic certificate}
+\paragraph{LMIs and error inequality.}
 The starting point is the offline robust output-feedback design of Benders et al.~\cite{benders2025}. Let $\epsilon\ge0$ denote the constant estimation-error radius supplied by its global observer certificate, expressed here in the $P$-norm:
 \[
 \norm{x-\hat x}_P\le\epsilon,
 \qquad\text{equivalently}\qquad V_e\le\epsilon^2.
 \]
-This invariant bound holds provided $V_{e,0}\le\epsilon^2$ and the certificate assumptions hold. We use the observer-certificate LMIs implemented in the accompanying ROHMPC repository~\cite{rohmpc}, specialized here to a constant metric and written in the notation of this manuscript. This subsection recovers the original constant radius $\epsilon$ and introduces a time-varying squared radius $R_{t}$; Section III-B then constructs the local process-envelope reduction.
+This invariant bound holds provided $V_{e,0}\le\epsilon^2$ and the certificate assumptions hold. This subsection recovers the original constant radius $\epsilon$ and introduces a time-varying squared radius $R_{t}$; Section III-B then constructs the local process-envelope reduction.
 For $b\in\R^n$, introduce the symmetric off-diagonal block
 \begin{equation}
 \mathcal S(b)=\begin{bmatrix}0&b\\b^\top&0\end{bmatrix}.
@@ -115,42 +116,13 @@ A_o=\int_0^1\frac{\partial f_0}{\partial x}(\hat x+\theta e,u)\,d\theta-LC.
 \]
 Indeed, integrating the state Jacobian along the segment gives $f_0(x,u)-f_0(\hat x,u)=(A_o+LC)e$. Since the dynamics LMI is affine in the Jacobian, its validity along the segment implies its validity for this average. The vector $b$ collects the process disturbance and measurement-noise contributions.
 
-Rewrite the first two inequalities in \eqref{eq:lmis} as $\mathcal S(E_0w)-W\preceq0$ and $\mathcal S(-LF\eta)-H\preceq0$, and add the third. The auxiliary matrices cancel:
-\[
-\underbrace{\mathcal S(E_0w)-W}_{\preceq0}
-+\underbrace{\mathcal S(-LF\eta)-H}_{\preceq0}
-+\underbrace{W+H+\diag(XA_o^\top+A_oX+\lambda X,-q_0)}_{\preceq0}
-\preceq0.
-\]
-Since $\mathcal S$ is linear,
-\[
-\mathcal S(E_0w)+\mathcal S(-LF\eta)=\mathcal S(b),
-\]
-so the resulting matrix inequality is
-\[
-M:=\begin{bmatrix}
-XA_o^\top+A_oX+\lambda X&b\\
-b^\top&-q_0
-\end{bmatrix}\preceq0.
-\]
-Negative semidefiniteness means $\xi^\top M\xi\le0$ for every vector $\xi$. Choosing $\xi=[Pe;1]$ and using $PX=XP=I$ and constant $P$ gives
-\begin{align*}
-\begin{bmatrix}Pe\\1\end{bmatrix}^{\!\top}M\begin{bmatrix}Pe\\1\end{bmatrix}
-&=e^\top P(XA_o^\top+A_oX+\lambda X)Pe+2e^\top Pb-q_0\\
-&=e^\top(A_o^\top P+PA_o)e+2e^\top Pb+\lambda e^\top Pe-q_0\\
-&=\dot V_e+\lambda V_e-q_0\le0.
-\end{align*}
-Therefore,
+Adding the two envelope inequalities and the dynamics LMI cancels $W,H$. Evaluating the resulting quadratic form at $[Pe;1]$ gives
 \begin{equation}\label{eq:global-dissipation}
 \dot V_e\le-\lambda V_e+q_0.
 \end{equation}
-Equivalently, define the invertible matrix $G=\diag(P,1)$. The congruence transformation of $M$ by $G$ is
-\begin{equation}\label{eq:observer-congruence}
-G^\top MG=
-\begin{bmatrix}A_o^\top P+PA_o+\lambda P&Pb\\b^\top P&-q_0\end{bmatrix}\preceq0.
-\end{equation}
-Indeed, $v^\top G^\top MGv=(Gv)^\top M(Gv)\le0$ for every $v$; invertibility makes the two matrix inequalities equivalent. Evaluating the transformed matrix at $[e;1]$ is identical to evaluating $M$ at $[Pe;1]$, because $G[e;1]=[Pe;1]$. These inequalities hold for every admissible $w,\eta$.
+The expanded calculation and equivalent congruence transformation are given in Appendix~\ref{app:observer-certificate}.
 
+\paragraph{Comparison equation and radius propagation.}
 To bound the estimation error, introduce a scalar squared radius $R_{t}$ defining the time-varying error set
 \[
 \mathcal E_{t}=\{e:e^\top Pe\le R_{t}\}.
@@ -169,7 +141,7 @@ Consequently, $V_{e,t}\le R_{t}$ and $\sqrt{R_{t}}$ bounds the estimation error 
 \begin{equation}\label{eq:global-solution}
 R_{t}=\epsilon^2+(R_{0}-\epsilon^2)e^{-\lambda t}.
 \end{equation}
-When $R_{0}\ge V_{e,0}$ it bounds the estimation error; when $R_{0}=\epsilon^2$, it exactly recovers the original constant radius $\epsilon$.
+When $R_{0}=\epsilon^2$, it exactly recovers the original constant radius $\epsilon$.
 
 \subsection{Local process-envelope reduction}\label{sec:local-envelope}
 The objective is to replace the global observer forcing $q_0$ by a smaller allowance that remains valid for the local process set. Starting from the model $d=E_0w_x$, $w_x\in\mathcal W(x,u)$, we now specialize to a family parameterized by a scalar amplitude:
@@ -190,7 +162,10 @@ E_0D(a_1)\cW_0\subseteq E_0D(a_2)\cW_0.
 \end{equation}
 The inclusion follows from the centered box bounds $|w_j|\le\bar w_j$: increasing $a$ enlarges the bounds of the selected components while leaving the others fixed. It remains valid after applying $E_0$.
 
-The scalar structure serves two purposes. Affine dependence of $D(a)$ makes the vertex quadratics defined before~\eqref{eq:vertex-maximum} convex in $a$, allowing a bound based on the two endpoint values. Nestedness permits an upper amplitude bound to enclose disturbances at all true states in a predicted tube. A general state-dependent matrix $D(x)$ can also define a disturbance model, but these properties need not hold: one would instead need to bound its process envelope over the whole tube, and the endpoint formula derived here would not follow automatically. Equation~\eqref{eq:scheduled-set} specifies the structure used in this construction; the velocity law in Section III-C is one choice of $a(x)$.
+The scalar parameter serves two purposes: affine $D(a)$ makes the vertex quadratics defined before~\eqref{eq:vertex-maximum} convex in $a$, enabling the endpoint chord bound; nested disturbance sets allow an upper bound on $a(x)$ to cover the predicted tube.
+
+A general matrix $D(x)$ can also describe state-dependent uncertainty, but need not have these properties. Its disturbance envelope would require a different bounding argument. Section III-C specifies the velocity-dependent choice of $a(x)$.
+
 Let $W\in\mathbb S^{n+1}$ satisfy the baseline process-envelope inequality~\eqref{eq:baseline-process}, where $\mathbb S^{n+1}$ denotes the symmetric $(n+1)\times(n+1)$ matrices. Introduce block notation for this envelope matrix:
 \begin{equation}
 W=\begin{bmatrix}Q&h_w\\h_w^\top&c\end{bmatrix},\qquad Q\succ0.
@@ -212,38 +187,13 @@ Here $\phi_i$ is the expression at the fixed vertex $w^{(i)}$, regarded as a fun
 g(a)=\max_{i=1,\ldots,2^m}\phi_i(a)
 =\max_{w\in\operatorname{vert}(\cW_0)}\phi(w,a).
 \end{equation}
-For fixed $a$, the Hessian with respect to $w$ is
-\[
-\nabla_w^2\phi(w,a)=2D(a)^\top E_0^\top Q^{-1}E_0D(a)\succeq0,
-\]
-so $\phi(\cdot,a)$ is convex. Any $w\in\cW_0$ can be written as $w=\sum_i\theta_iw^{(i)}$ with $\theta_i\ge0$ and $\sum_i\theta_i=1$. Therefore,
-\[
-\phi(w,a)\le\sum_i\theta_i\phi(w^{(i)},a)\le\max_i\phi_i(a)=g(a).
-\]
-Since every box point is a convex combination of its vertices and the vertices belong to the box, $g(a)=\max_{w\in\cW_0}\phi(w,a)$. Thus the vertex maximum bounds the entire disturbance box, including its interior.
-
-For a fixed vertex, the affine dependence of $D(a)$ permits the representation
-\[
-E_0D(a)w^{(i)}-h_w=a p_i+r_i,
-\qquad
-\phi_i''(a)=2p_i^\top Q^{-1}p_i\ge0,
-\]
-where $p_i,r_i$ are fixed vectors. Each vertex function is consequently convex in $a$, and their pointwise maximum $g$ is convex as well, although it need not be differentiable where the maximizing vertex changes. Nestedness of $E_0D(a)\cW_0$ also gives $g(\beta)\le g(1)$.
-
-A convex function lies below the chord joining its endpoint values. Writing
-$a=\frac{1-a}{1-\beta}\beta+\frac{a-\beta}{1-\beta}\,1$ for $a\in[\beta,1]$ yields
-\[
-g(a)\le\frac{1-a}{1-\beta}g(\beta)+\frac{a-\beta}{1-\beta}g(1).
-\]
-Equivalently,
+For fixed $a$, $\phi(\cdot,a)$ is convex, so its maximum over the box is attained at a vertex:
+$g(a)=\max_{w\in\cW_0}\phi(w,a)$. Affine dependence of $D(a)$ makes each $\phi_i(a)$ convex in $a$; hence their maximum $g$ is convex. Nestedness also gives $g(\beta)\le g(1)$.
+A convex function lies below its endpoint chord. Consequently,
 \begin{equation}\label{eq:chord}
 g(a)\le g(1)-\frac{1-a}{1-\beta}\bigl(g(1)-g(\beta)\bigr).
 \end{equation}
-For $\beta<a<1$, the same inequality can be expressed as a comparison of secant slopes:
-\[
-\frac{g(1)-g(a)}{1-a}\ge\frac{g(1)-g(\beta)}{1-\beta}.
-\]
-The secant ending at $1$ and starting at $a$ has slope at least as large as the secant from $\beta$ to $1$. Hence the chord provides a guaranteed reduction from the global value $g(1)$, without requiring derivatives of $g$. The following proposition transfers this reduction to the process-envelope entry $c$ and the observer forcing $q_0$ by reducing both by the same amount.
+The convexity calculations, geometric interpretation, and secant-slope comparison are given in Appendix~\ref{app:vertex-convexity}. The following proposition transfers this reduction to the process-envelope entry $c$ and the observer forcing $q_0$ by reducing both by the same amount.
 \begin{proposition}[Local forcing from a fixed certificate]\label{prop:local}
 Suppose the baseline certificate~\eqref{eq:lmis} holds exactly, $Q\succ0$, and the local disturbance sets have the structure~\eqref{eq:scheduled-set}. Choose
 $0\le\Delta\le g(1)-g(\beta)$ and define
@@ -256,16 +206,18 @@ For every $a\in[\beta,1]$, the reduced envelope satisfies $\mathcal S(E_0D(a)w)\
 $\dot V_e\le-\lambda V_e+q(a)$.
 \end{proposition}
 \begin{proof}
+\leavevmode\par\smallskip\noindent\textbf{Step 1: Validity of the reduced process envelope.}\par\nobreak\smallskip\noindent
 At $a=1$, $D(1)=I$. The process-envelope inequality~\eqref{eq:baseline-process} of the global baseline certificate, together with the Schur-complement equivalence~\eqref{eq:schur} and the vertex-maximum identity~\eqref{eq:vertex-maximum}, implies
 \[
 c\ge\max_{w\in\cW_0}\phi(w,1)=\max_i\phi_i(1)=g(1).
 \]
-Equation~\eqref{eq:chord} and the choice of $\Delta$ give $g(a)\le c-\Delta\theta(a)$, proving the local envelope inequality by \eqref{eq:schur}. To retain the dynamics certificate, reduce $q_0$ by the same amount as the bottom-right entry of $W$. Indeed, writing $B_o=XA_o^\top+A_oX+\lambda X$ gives
+Equation~\eqref{eq:chord} and the choice of $\Delta$ give $g(a)\le c-\Delta\theta(a)$, proving the local envelope inequality by \eqref{eq:schur}. \par\medskip\noindent\textbf{Step 2: Preservation of the observer certificate.}\par\nobreak\smallskip\noindent
+To retain the dynamics certificate, reduce $q_0$ by the same amount as the bottom-right entry of $W$. Indeed, writing $B_o=XA_o^\top+A_oX+\lambda X$ gives
 \[
 W(a)+H+\diag(B_o,-q(a))
 =W+H+\diag(B_o,-q_0)\preceq0.
 \]
-Thus the disturbance envelope can shrink while the dynamics LMI remains identical. Adding the reduced process-envelope inequality and the unchanged noise-envelope inequality~\eqref{eq:baseline-noise}, together with this dynamics inequality, yields $\dot V_e\le-\lambda V_e+q(a)$ by the quadratic-form calculation in Section III-A.
+Thus the disturbance envelope can shrink while the dynamics LMI remains identical. Adding the reduced process-envelope inequality and the unchanged noise-envelope inequality~\eqref{eq:baseline-noise}, together with this dynamics inequality, yields $\dot V_e\le-\lambda V_e+q(a)$ by the quadratic-form calculation in Appendix~\ref{app:observer-certificate}.
 \end{proof}
 At $a=1$, $W(a)=W$ and $q(a)=q_0$. For smaller $a$, the chord bound gives a guaranteed process-envelope reduction, which is transferred to the observer forcing without changing the metric or gains. The construction therefore follows the sequence
 \[
@@ -274,6 +226,7 @@ At $a=1$, $W(a)=W$ and $q(a)=q_0$. For smaller $a$, the chord bound gives a guar
 \]
 Here $\mathcal W(x)$ is a set of admissible disturbance components, $E_0w_x$ is the physical disturbance, $W(a)$ is its auxiliary matrix envelope, and $q(a)$ is the scalar forcing allowance in the estimation-error inequality. For use in MPC, $x$ is unknown. We must next bound $a(x)$ over the predicted error tube so that the same local forcing is valid for every true state represented by that tube. For the positive-forcing formulation below, choose $\Delta$ such that $q_0-\Delta>0$.
 \subsection{Velocity-Dependent Disturbance Bound over the Predicted Tube}\label{sec:velocity-envelope}
+
 Let $S_v$ select the translational velocity components of the state, and denote the true velocity vector by $v_x:=S_vx$. The symbol $v$ in the nominal dynamics continues to denote the nominal control input.
 Consider the velocity-dependent amplitude law
 \begin{equation}\label{eq:velocity-amplitude}
@@ -290,21 +243,12 @@ Recall that $T^\top T=P$, so $\norm e_P=\norm{Te}_2$. Define
 \begin{equation}\label{eq:velocity-metric-factor}
 c_v:=\norm{S_vT^{-1}}_2.
 \end{equation}
-Using the Cauchy--Schwarz inequality and the induced matrix norm bound, we obtain
-\begin{align*}
-\norm{S_ve}_2
-&=\norm{S_vT^{-1}(Te)}_2\\
-&\le\norm{S_vT^{-1}}_2\norm{Te}_2
-=c_v\norm e_P\le c_v\sqrt R.
-\end{align*}
-The same argument gives $\norm{S_v\delta}_2\le c_v\norm\delta_P\le c_vs$.
-Starting from the state decomposition $x=z+\delta+e$, the triangle inequality gives
-\begin{align*}
-\norm{S_vx}_2
-&=\norm{S_vz+S_v\delta+S_ve}_2\\
-&\le\norm{S_vz}_2+\norm{S_v\delta}_2+\norm{S_ve}_2\\
-&\le\norm{S_vz}_2+c_v(s+\sqrt R).
-\end{align*}
+The induced norm gives $\norm{S_ve}_2\le c_v\sqrt R$ and $\norm{S_v\delta}_2\le c_vs$. Since $x=z+\delta+e$, the triangle inequality yields
+\[
+\norm{S_vx}_2\le\norm{S_vz}_2+\norm{S_v\delta}_2+\norm{S_ve}_2
+\le\norm{S_vz}_2+c_v(s+\sqrt R).
+\]
+The intermediate norm calculations are given in Appendix~\ref{app:velocity-bound}.
 Combining this tube bound with the certified domain bound $\norm{S_vx}_2\le v_{\max}$ defines
 \begin{equation}\label{eq:local-speed-bound}
 v_{\rm up}:=\min\{v_{\max},\norm{S_vz}_2+c_v(\sqrt R+s)\}.
@@ -328,20 +272,8 @@ More explicitly, the scalar used in the estimation-radius dynamics is
 \[
 q(z,R,s)=q_0-\Delta\frac{1-a_{\rm up}(z,R,s)}{1-\beta}.
 \]
-The local uncertainty model specifies $a(x)$, while the predicted state and radii determine its enclosing value $a_{\rm up}$. The resulting $q(z,R,s)$ is therefore a bound valid throughout that tube. Here $q$ has no explicit dependence on the nominal input $v$. Section IV writes $q(z,v,R,s)$ for the general case.
-\subsection{Comparison with Separate-Norm Disturbance Bounds}
-Retaining the model, metric, and gains from Section II and the uncertainty sets from Section III-B, consider an alternative estimation-error bound obtained by bounding the process-disturbance and measurement-noise contributions separately. Derivative inequalities for error norms are understood to hold almost everywhere in time. If the disturbance-free observer error satisfies $\frac{d}{dt}\norm e_P\le-\rho_o\norm e_P$ for a contraction rate $\rho_o>0$, a radius bound can be propagated as
-\begin{equation}
-\dot r=-\rho_o r+b_{\rm rest}+a_{\rm up}b_{\rm acc}+b_\eta.
-\end{equation}
-Here $b_{\rm acc}=\max\norm{TE_{\rm acc}w_{\rm acc}}_2$ bounds the unscaled acceleration-disturbance contribution, $b_{\rm rest}$ bounds the remaining process contribution, and $b_\eta=\max_{\eta\in\mathcal N}\norm{TLF\eta}_2$ bounds measurement noise. Each maximum is taken over its corresponding admissible set.
-
-For vector contributions $d_j(\omega_j)$ with $\omega_j\in\Omega_j$, this construction uses
-\[
-\max_{\omega\in\prod_j\Omega_j}\left\|\sum_j d_j(\omega_j)\right\|_P
-\le\sum_j\max_{\omega_j\in\Omega_j}\norm{d_j(\omega_j)}_P.
-\]
-The triangle inequality and separate maximizations discard directional information: the individual largest contributions need not align to attain the sum of their norms. Thus this approach can be more conservative and need not recover the original SDP radius at $a=1$. Proposition~\ref{prop:local} retains the original quadratic certificate and recovers its global baseline at $a=1$.
+The local uncertainty model specifies $a(x)$, while the predicted state and radii determine its enclosing value $a_{\rm up}$. The resulting $q(z,R,s)$ is therefore a bound valid throughout that tube.
+A separate-norm construction can be more conservative because it sums individually maximized contributions and need not recover the original SDP radius at $a=1$. Appendix~\ref{app:separate-norm} gives this comparison using the same model, metric, and gains.
 \section{Robust Output-Feedback MPC}
 \subsection{Coupled tube dynamics}
 Suppose the tracking contraction condition holds along every state--input segment joining $(z,v)$ to $(\hat x,v+K(\hat x-z))$ in the certified domain:
@@ -365,7 +297,7 @@ The derivation of \eqref{eq:tracking-bound}, using the contraction condition~\eq
 \dot s&=-\rho s+\gamma\sqrt R+b_\eta.\label{eq:tracking-radius}
 \end{align}
 \end{subequations}
-The general notation permits input dependence in $q$; the present velocity example has none explicitly. The forcing bound $q(z,v,R,s)$ must be valid for every state--input pair represented by the predicted tube and every admissible disturbance realization.
+The general notation $q(z,v,R,s)$ permits dependence on the nominal input $v$; the present velocity example has none explicitly. Assumption~\ref{ass:domain} states the required validity of this forcing allowance over the predicted tube.
 
 \begin{assumption}[Certificate validity on the operating domain]\label{ass:domain}
 Let $\cD\subseteq\R^n\times\R^{n_u}$ be a specified state--input region. The baseline observer LMIs~\eqref{eq:lmis} and tracking contraction condition~\eqref{eq:tracking-contraction} hold on a neighborhood of $\cD$. The disturbance-set model is valid there. For any predicted $(z,v,R,s)$ and errors satisfying $e^\top Pe\le R$ and $\norm\delta_P\le s$, set $\hat x=z+\delta$, $x=z+\delta+e$, and $u=v+K\delta$. The certificate applies whenever the segments
@@ -394,16 +326,7 @@ The pair of radius variables $(R,s)$ is constrained to the rectangle
 \]
 These variables bound the errors through $e^\top Pe\le R$ and $\norm\delta_P\le s$. An available initial prior $\bar R_0\in[R_{\min},R_{\max}]$ satisfies $V_{e,0}\le\bar R_0$. The observer state evolves continuously according to the observer dynamics in Section II, including across MPC updates.
 \end{assumption}
-The upper radii provide uniform error margins for the terminal construction; the positive lower radius ensures regularity of the square-root term. Local Lipschitz continuity gives a well-posed radius evolution. Boundedness follows separately from invariance of $\mathcal B$, while actual-error containment is established in Lemma~\ref{lem:tube}. The coupled radius equations~\eqref{eq:tubes} satisfy the following conditions on the four boundaries of $\mathcal B$:
-\[
-\begin{aligned}
-R=R_{\min}:\quad &\dot R\ge-\lambda R_{\min}+q_{\min}\ge0,\\
-R=R_{\max}:\quad &\dot R\le-\lambda R_{\max}+q_{\max}=0,\\
-s=0:\quad &\dot s=\gamma\sqrt R+b_\eta\ge0,\\
-s=s_{\max}:\quad &\dot s\le-\rho s_{\max}+\gamma\sqrt{R_{\max}}+b_\eta=0.
-\end{aligned}
-\]
-Thus the radius pair cannot leave this rectangle along admissible nominal trajectories: if $(R_{0},s_{0})\in\mathcal B$, then $(R_{t},s_{t})\in\mathcal B$ for all subsequent times on which the assumptions hold. Since $\frac{d}{dR}\sqrt R=\frac{1}{2\sqrt R}$, the derivative is unbounded as $R\to0^+$. Restricting $R\ge R_{\min}>0$ bounds this derivative and ensures that the square-root term is Lipschitz on the admissible interval.
+The upper radii provide uniform error margins for the terminal construction. Local Lipschitz continuity gives a well-posed radius evolution. Boundedness follows separately from invariance of $\mathcal B$, while actual-error containment is established in Lemma~\ref{lem:tube}. The radius dynamics point inward or tangent at all four boundaries of $\mathcal B$; the boundary calculations are given in Appendix~\ref{app:radius-box}. Thus the radius pair cannot leave this rectangle along admissible nominal trajectories: if $(R_{0},s_{0})\in\mathcal B$, then $(R_{t},s_{t})\in\mathcal B$ for all subsequent times on which the assumptions hold. Since $\frac{d}{dR}\sqrt R=\frac{1}{2\sqrt R}$, the derivative is unbounded as $R\to0^+$. Restricting $R\ge R_{\min}>0$ bounds this derivative and ensures that the square-root term is Lipschitz on the admissible interval.
 
 \begin{lemma}[Tube containment]\label{lem:tube}
 Under Assumptions~\ref{ass:wellposed}--\ref{ass:radii}, consider a prediction satisfying the domain-containment conditions of Section IV-B throughout an applied interval. The estimation-error inequality~\eqref{eq:local-observer-bound} and tracking-error inequality~\eqref{eq:tracking-bound}, together with initial bounds $V_{e,t}\le R_{0\mid t}$ and $\norm{\hat x_t-z_{0\mid t}}_P\le s_{0\mid t}$, imply
@@ -426,7 +349,17 @@ For each state--input constraint $g_j(x,u)\le0$, impose the worst-case condition
 \sup_{\norm e_P\le\sqrt R,\ \norm\delta_P\le s}
  g_j(z+\delta+e,v+K\delta)\le0.
 \end{equation}
-For an affine constraint $a_j^\top x+b_j^\top u\le c_j$, substituting $x=z+\delta+e$ and $u=v+K\delta$ gives the uncertain contribution $(a_j^\top+b_j^\top K)\delta+a_j^\top e$. The error balls have radii $s$ and $\sqrt R$, respectively. With $T^\top T=P$, the Cauchy--Schwarz inequality gives $\max_{\|T\xi\|_2\le r} a^\top\xi=r\|a^\top T^{-1}\|_2$; the bound is attained in the maximizing direction. Since the two errors range independently over their balls, their maxima add. Define the tightening constants
+For an affine constraint $a_j^\top x+b_j^\top u\le c_j$, substituting $x=z+\delta+e$ and $u=v+K\delta$ gives the uncertain contribution $(a_j^\top+b_j^\top K)\delta+a_j^\top e$. With $T^\top T=P$, maximization over the tracking-error ball gives
+\[
+\max_{\norm\delta_P\le s}(a_j^\top+b_j^\top K)\delta
+=s\norm{(a_j^\top+b_j^\top K)T^{-1}}_2.
+\]
+Similarly, maximization over the estimation-error ball gives
+\[
+\max_{\norm e_P\le\sqrt R}a_j^\top e
+=\sqrt R\,\norm{a_j^\top T^{-1}}_2.
+\]
+These maxima follow from the Cauchy--Schwarz inequality and are attained in the corresponding maximizing directions. Since the two errors range independently over their balls, the two margins add. Define the tightening constants
 \[
 c_{s,j}:=\norm{(a_j^\top+b_j^\top K)T^{-1}}_2,
 \qquad c_{e,j}:=\norm{a_j^\top T^{-1}}_2.
@@ -456,7 +389,7 @@ The initial nominal center $z_{0\mid t}$ is free. For the selected feasible plan
 \[
 u_{t+\tau}=v_{\tau\mid t}+K\bigl(\hat x_{t+\tau}-z_{\tau\mid t}\bigr),\qquad 0\le\tau<h,
 \]
-and initialize the next prediction with $R_{0\mid t+h}=R_{h\mid t}$. Lemma~\ref{lem:tube} ensures $V_{e,t+h}\le R_{h\mid t}$, so this remains a valid estimation-error bound. Starting from an initially feasible MPC problem, recursive feasibility and constraint satisfaction hold when the controller applies a feasible plan at each update; optimality is not required for these guarantees. Superscript $*$ denotes optimal plans and the minimum horizon cost in the cost-decrease inequality~\eqref{eq:decrease} of Theorem~\ref{thm:mpc}.
+and initialize the next prediction with $R_{0\mid t+h}=R_{h\mid t}$. Lemma~\ref{lem:tube} ensures $V_{e,t+h}\le R_{h\mid t}$, so this remains a valid estimation-error bound. Theorem~\ref{thm:mpc} establishes recursive feasibility and constraint satisfaction without requiring optimality. Superscript $*$ denotes optimal plans and the minimum horizon cost in the cost-decrease inequality~\eqref{eq:decrease} of Theorem~\ref{thm:mpc}.
 \subsection{Terminal Ingredients and Recursive Feasibility}
 \begin{assumption}[Terminal ingredients]\label{ass:terminal}
 There exist a nonempty nominal terminal set $Z_f$ and controller $\kappa_f$ such that $\dot z=f_0(z,\kappa_f(z))$ leaves $Z_f$ invariant. For every $z\in Z_f$, with nominal input $v=\kappa_f(z)$, the tightened state--input constraints~\eqref{eq:tightening} and the certificate-domain conditions in Assumption~\ref{ass:domain} hold at $R=R_{\max}$ and $s=s_{\max}$. For the cost assertion additionally assume $\ell,V_f\ge0$ and
@@ -487,10 +420,7 @@ z^c_{0\mid t+h}=z_{h\mid t},\qquad
 R^c_{0\mid t+h}=R_{h\mid t},\qquad
 s^c_{0\mid t+h}=s_{h\mid t}.
 \]
-The estimation-radius update rule~\eqref{eq:radius-update} sets $R_{0\mid t+h}=R_{h\mid t}$, so the candidate has the required initial radius $R^c_{0\mid t+h}=R_{0\mid t+h}$. Lemma~\ref{lem:tube}, applied over the previous control interval, ensures $V_{e,t+h}\le R_{h\mid t}$ and
-\[
-\norm{\hat x_{t+h}-z_{h\mid t}}_P\le s_{h\mid t}.
-\]
+The estimation-radius update rule~\eqref{eq:radius-update} sets $R_{0\mid t+h}=R_{h\mid t}$, so the candidate has the required initial radius $R^c_{0\mid t+h}=R_{0\mid t+h}$. Lemma~\ref{lem:tube}, applied over the previous control interval, ensures $V_{e,t+h}\le R_{h\mid t}$ and $\norm{\hat x_{t+h}-z_{h\mid t}}_P\le s_{h\mid t}$.
 Using the shifted initial center and tracking radius therefore yields
 \[
 \norm{\hat x_{t+h}-z^c_{0\mid t+h}}_P
@@ -637,6 +567,108 @@ arXiv:2508.07045v1, 2025. \url{https://arxiv.org/abs/2508.07045}.
 \appendix
 \section*{APPENDIX}
 \renewcommand{\thesection}{\Alph{section}}
+\section{From Observer LMIs to the Error Inequality}\label{app:observer-certificate}
+Use the error dynamics $\dot e=A_oe+b$, with $b=E_0w-LF\eta$ and the segment-averaged $A_o$ defined in Section III-A. The following calculation expands the implication from~\eqref{eq:lmis} to~\eqref{eq:global-dissipation}.
+Rewrite the first two inequalities in \eqref{eq:lmis} as $\mathcal S(E_0w)-W\preceq0$ and $\mathcal S(-LF\eta)-H\preceq0$, and add the third. The auxiliary matrices cancel:
+\[
+\underbrace{\mathcal S(E_0w)-W}_{\preceq0}
++\underbrace{\mathcal S(-LF\eta)-H}_{\preceq0}
++\underbrace{W+H+\diag(XA_o^\top+A_oX+\lambda X,-q_0)}_{\preceq0}
+\preceq0.
+\]
+Since $\mathcal S$ is linear,
+\[
+\mathcal S(E_0w)+\mathcal S(-LF\eta)=\mathcal S(b),
+\]
+so the resulting matrix inequality is
+\[
+M:=\begin{bmatrix}
+XA_o^\top+A_oX+\lambda X&b\\
+b^\top&-q_0
+\end{bmatrix}\preceq0.
+\]
+Negative semidefiniteness means $\xi^\top M\xi\le0$ for every vector $\xi$. Choosing $\xi=[Pe;1]$ and using $PX=XP=I$ and constant $P$ gives
+\begin{align*}
+\begin{bmatrix}Pe\\1\end{bmatrix}^{\!\top}M\begin{bmatrix}Pe\\1\end{bmatrix}
+&=e^\top P(XA_o^\top+A_oX+\lambda X)Pe+2e^\top Pb-q_0\\
+&=e^\top(A_o^\top P+PA_o)e+2e^\top Pb+\lambda e^\top Pe-q_0\\
+&=\dot V_e+\lambda V_e-q_0\le0.
+\end{align*}
+This establishes the error inequality~\eqref{eq:global-dissipation}.
+Equivalently, define the invertible matrix $G=\diag(P,1)$. The congruence transformation of $M$ by $G$ is
+\begin{equation}\label{eq:observer-congruence}
+G^\top MG=
+\begin{bmatrix}A_o^\top P+PA_o+\lambda P&Pb\\b^\top P&-q_0\end{bmatrix}\preceq0.
+\end{equation}
+Indeed, $v^\top G^\top MGv=(Gv)^\top M(Gv)\le0$ for every $v$; invertibility makes the two matrix inequalities equivalent. Evaluating the transformed matrix at $[e;1]$ is identical to evaluating $M$ at $[Pe;1]$, because $G[e;1]=[Pe;1]$. These inequalities hold for every admissible $w,\eta$.
+
+
+\section{Vertex Maximum, Convexity, and Chord Bound}\label{app:vertex-convexity}
+Recall $\phi(w,a)$, its vertex values $\phi_i(a)$, and $g(a)$ from Section III-B.
+\paragraph{Maximum over the disturbance box.}
+For fixed $a$, the Hessian with respect to $w$ is
+\[
+\nabla_w^2\phi(w,a)=2D(a)^\top E_0^\top Q^{-1}E_0D(a)\succeq0,
+\]
+so $\phi(\cdot,a)$ is convex. Any $w\in\cW_0$ can be written as $w=\sum_i\theta_iw^{(i)}$ with $\theta_i\ge0$ and $\sum_i\theta_i=1$. Therefore,
+\[
+\phi(w,a)\le\sum_i\theta_i\phi(w^{(i)},a)\le\max_i\phi_i(a)=g(a).
+\]
+Since every box point is a convex combination of its vertices and the vertices belong to the box, $g(a)=\max_{w\in\cW_0}\phi(w,a)$. Thus the vertex maximum bounds the entire disturbance box, including its interior.
+
+\paragraph{Convexity in the scheduling amplitude.}
+For a fixed vertex, the affine dependence of $D(a)$ permits the representation
+\[
+E_0D(a)w^{(i)}-h_w=a p_i+r_i,
+\qquad
+\phi_i''(a)=2p_i^\top Q^{-1}p_i\ge0,
+\]
+where $p_i,r_i$ are fixed vectors. Each vertex function is consequently convex in $a$, and their pointwise maximum $g$ is convex as well, although it need not be differentiable where the maximizing vertex changes. Nestedness of $E_0D(a)\cW_0$ also gives $g(\beta)\le g(1)$.
+
+
+\paragraph{Endpoint chord and secant slopes.}
+A convex function lies below the chord joining its endpoint values. Writing
+$a=\frac{1-a}{1-\beta}\beta+\frac{a-\beta}{1-\beta}\,1$ for $a\in[\beta,1]$ yields
+\[
+g(a)\le\frac{1-a}{1-\beta}g(\beta)+\frac{a-\beta}{1-\beta}g(1).
+\]
+This is the chord bound~\eqref{eq:chord}. For $\beta<a<1$, the same inequality can be expressed as a comparison of secant slopes:
+\[
+\frac{g(1)-g(a)}{1-a}\ge\frac{g(1)-g(\beta)}{1-\beta}.
+\]
+The secant ending at $1$ and starting at $a$ has slope at least as large as the secant from $\beta$ to $1$. Hence the chord provides a guaranteed reduction from the global value $g(1)$, without requiring derivatives of $g$.
+\section{Velocity Bound over the Error Tube}\label{app:velocity-bound}
+Recall $c_v=\norm{S_vT^{-1}}_2$, $T^\top T=P$, and $x=z+\delta+e$ from Section III-C.
+Using the Cauchy--Schwarz inequality and the induced matrix norm bound, we obtain
+\begin{align*}
+\norm{S_ve}_2
+&=\norm{S_vT^{-1}(Te)}_2\\
+&\le\norm{S_vT^{-1}}_2\norm{Te}_2
+=c_v\norm e_P\le c_v\sqrt R.
+\end{align*}
+The same argument gives $\norm{S_v\delta}_2\le c_v\norm\delta_P\le c_vs$.
+Starting from the state decomposition $x=z+\delta+e$, the triangle inequality gives
+\begin{align*}
+\norm{S_vx}_2
+&=\norm{S_vz+S_v\delta+S_ve}_2\\
+&\le\norm{S_vz}_2+\norm{S_v\delta}_2+\norm{S_ve}_2\\
+&\le\norm{S_vz}_2+c_v(s+\sqrt R).
+\end{align*}
+
+\section{Comparison with Separate-Norm Disturbance Bounds}\label{app:separate-norm}
+Retaining the model, metric, and gains from Section II and the uncertainty sets from Section III-B, consider an alternative estimation-error bound obtained by bounding the process-disturbance and measurement-noise contributions separately. Derivative inequalities for error norms are understood to hold almost everywhere in time. If the disturbance-free observer error satisfies $\frac{d}{dt}\norm e_P\le-\rho_o\norm e_P$ for a contraction rate $\rho_o>0$, a radius bound can be propagated as
+\begin{equation}
+\dot r=-\rho_o r+b_{\rm rest}+a_{\rm up}b_{\rm acc}+b_\eta.
+\end{equation}
+Here $b_{\rm acc}=\max\norm{TE_{\rm acc}w_{\rm acc}}_2$ bounds the unscaled acceleration-disturbance contribution, $b_{\rm rest}$ bounds the remaining process contribution, and $b_\eta=\max_{\eta\in\mathcal N}\norm{TLF\eta}_2$ bounds measurement noise. Each maximum is taken over its corresponding admissible set.
+
+For vector contributions $d_j(\omega_j)$ with $\omega_j\in\Omega_j$, this construction uses
+\[
+\max_{\omega\in\prod_j\Omega_j}\left\|\sum_j d_j(\omega_j)\right\|_P
+\le\sum_j\max_{\omega_j\in\Omega_j}\norm{d_j(\omega_j)}_P.
+\]
+The triangle inequality and separate maximizations discard directional information: the individual largest contributions need not align to attain the sum of their norms. Thus this approach can be more conservative and need not recover the original SDP radius at $a=1$. Proposition~\ref{prop:local} retains the original quadratic certificate and recovers its global baseline at $a=1$.
+
 \section{Derivation of the Tracking-Error Bound}\label{app:tracking-bound}
 Recall $\delta=\hat x-z$, $e=x-\hat x$, and $u=v+K\delta$. Subtracting the nominal dynamics from the observer dynamics gives
 \begin{equation}\label{eq:appendix-delta}
@@ -704,6 +736,19 @@ Subtracting this equation from the norm inequality and applying an integrating f
 \]
 provided the estimation bound and certificate-domain conditions remain valid, as required in the coupled containment argument.
 
+\section{Invariance of the Radius Box}\label{app:radius-box}
+Recall the rectangle $\mathcal B$ and the bounds $q_{\min}\le q\le q_{\max}$ in Assumption~\ref{ass:radii}.
+The coupled radius equations~\eqref{eq:tubes} satisfy the following conditions on the four boundaries of $\mathcal B$:
+\[
+\begin{aligned}
+R=R_{\min}:\quad &\dot R\ge-\lambda R_{\min}+q_{\min}\ge0,\\
+R=R_{\max}:\quad &\dot R\le-\lambda R_{\max}+q_{\max}=0,\\
+s=0:\quad &\dot s=\gamma\sqrt R+b_\eta\ge0,\\
+s=s_{\max}:\quad &\dot s\le-\rho s_{\max}+\gamma\sqrt{R_{\max}}+b_\eta=0.
+\end{aligned}
+\]
+
+Each boundary derivative is inward-pointing or tangent. Under the stated regularity conditions, the box is therefore invariant along admissible nominal trajectories: a radius pair initialized in $\mathcal B$ remains there while the assumptions hold.
 \section{Comparison of Local and Global Radius Bounds}\label{app:radius-comparison}
 Consider the same nominal state and input trajectories $z_{t},v_{t}$, identical initial radius values, and the same metric, gains, and constants $\lambda,\rho,\gamma,b_\eta$ in both propagations. Define the local estimation-error forcing along its radius trajectory by
 \[
@@ -746,7 +791,7 @@ s_{\rm local,t}-s_{\rm global,t}
 \end{aligned}
 \end{equation}
 Here \eqref{eq:radius-ordering}, nonnegative radii, and $\gamma\ge0$ establish the final inequality. Consequently, under the common nominal trajectories and initialization, both predicted error bounds in the local formulation are no larger than their global baseline counterparts.
-% Appendix C hidden in sharing draft; change false to true to restore.
+% Reproducibility appendix hidden in sharing draft; change false to true to restore.
 \iffalse
 \section{Reproducibility and Source Map}
 All paths below are relative to the repository root. The baseline is

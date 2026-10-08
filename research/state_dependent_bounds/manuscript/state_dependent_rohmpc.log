@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.9.23)  8 OCT 2026 15:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.9.23)  8 OCT 2026 17:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -590,9 +590,9 @@ ktex/texmfs/install/fonts/enc/dvips/lm/lm-ec.enc}{/home/satyam/.miktex/texmfs/i
 nstall/fonts/enc/dvips/lm/lm-rm.enc}{/home/satyam/.miktex/texmfs/install/fonts/
 enc/dvips/lm/lm-mathit.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips
 /lm/lm-mathsy.enc}] [2{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/l
-m-mathex.enc}] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
-60.
+m-mathex.enc}] [3] [4] [5] [6] [7] [8] [9] [10]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
+90.
 
 (/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -601,37 +601,37 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Overfull \hbox (10.73955pt too wide) in paragraph at lines 569--587
+ [11]
+Overfull \hbox (10.73955pt too wide) in paragraph at lines 499--517
 \T1/lmr/m/n/10.95 (-20) centered acceleration disturbance components 7--9 are s
 caled. Other process-disturbance components,
  []
 
-<falcon_tube_comparison.png, id=296, 899.7615pt x 549.252pt>
+<falcon_tube_comparison.png, id=312, 899.7615pt x 549.252pt>
 File: falcon_tube_comparison.png Graphic file (type png)
 <use falcon_tube_comparison.png>
-Package pdftex.def Info: falcon_tube_comparison.png  used on input line 600.
+Package pdftex.def Info: falcon_tube_comparison.png  used on input line 530.
 (pdftex.def)             Requested size: 437.0374pt x 266.78079pt.
-[13] [14 <./falcon_tube_comparison.png (PNG copy)>] [15] [16
+[12] [13 <./falcon_tube_comparison.png (PNG copy)>] [14] [15
 
-] [17]
-(state_dependent_rohmpc.aux)
+] [16] [17]
+[18] [19] (state_dependent_rohmpc.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `state_dependent_rohmpc.out' has not changed.
 
-(rerunfilecheck)             Checksum: 2D42A97A93DD5AD591F43BAAD5FE3E65;4984.
+(rerunfilecheck)             Checksum: 5213AC44B2ABDBBAA6F2DFF3538A67FE;5941.
  ) 
 Here is how much of TeX's memory you used:
- 14047 strings out of 469628
- 220919 string characters out of 5466922
- 682695 words of memory out of 5000000
- 42341 multiletter control sequences out of 15000+600000
- 686623 words of font info for 183 fonts, out of 8000000 for 9000
+ 14073 strings out of 469628
+ 221230 string characters out of 5466922
+ 682929 words of memory out of 5000000
+ 42350 multiletter control sequences out of 15000+600000
+ 686905 words of font info for 186 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 75i,14n,79p,1098b,614s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,14n,79p,1098b,622s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmbx10.pfb></home/
 satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmbx12.pfb></home/satyam/.m
 iktex/texmfs/install/fonts/type1/public/lm/lmex10.pfb></home/satyam/.miktex/tex
@@ -648,9 +648,9 @@ pe1/public/lm/lmsy6.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public
 /lm/lmsy8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmtt10
 .pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on state_dependent_rohmpc.pdf (17 pages, 539077 bytes).
+Output written on state_dependent_rohmpc.pdf (19 pages, 550196 bytes).
 PDF statistics:
- 456 PDF objects out of 1000 (max. 8388607)
- 121 named destinations out of 1000 (max. 500000)
- 29366 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 498 PDF objects out of 1000 (max. 8388607)
+ 132 named destinations out of 1000 (max. 500000)
+ 29398 words of extra memory for PDF output out of 29859 (max. 10000000)
 
