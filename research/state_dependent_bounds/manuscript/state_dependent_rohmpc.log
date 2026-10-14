@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.9.23)  8 OCT 2026 17:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.9.23)  9 OCT 2026 09:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -602,34 +602,29 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
  [11]
-Overfull \hbox (10.73955pt too wide) in paragraph at lines 499--517
-\T1/lmr/m/n/10.95 (-20) centered acceleration disturbance components 7--9 are s
-caled. Other process-disturbance components,
- []
+<falcon_tube_comparison.pdf, id=311, 648.4225pt x 549.05125pt>
+File: falcon_tube_comparison.pdf Graphic file (type pdf)
+<use falcon_tube_comparison.pdf>
+Package pdftex.def Info: falcon_tube_comparison.pdf  used on input line 535.
+(pdftex.def)             Requested size: 437.0374pt x 370.0658pt.
+ [12] [13 <./falcon_tube_comparison.pdf>] [14] [15
 
-<falcon_tube_comparison.png, id=312, 899.7615pt x 549.252pt>
-File: falcon_tube_comparison.png Graphic file (type png)
-<use falcon_tube_comparison.png>
-Package pdftex.def Info: falcon_tube_comparison.png  used on input line 530.
-(pdftex.def)             Requested size: 437.0374pt x 266.78079pt.
-[12] [13 <./falcon_tube_comparison.png (PNG copy)>] [14] [15
-
-] [16] [17]
-[18] [19] (state_dependent_rohmpc.aux)
+] [16] [17] [18] [19]
+(state_dependent_rohmpc.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `state_dependent_rohmpc.out' has not changed.
 
-(rerunfilecheck)             Checksum: 5213AC44B2ABDBBAA6F2DFF3538A67FE;5941.
+(rerunfilecheck)             Checksum: 577E11565385B7A65B1ECC47D60D94E3;5966.
  ) 
 Here is how much of TeX's memory you used:
- 14073 strings out of 469628
- 221230 string characters out of 5466922
- 682929 words of memory out of 5000000
+ 14067 strings out of 469628
+ 221192 string characters out of 5466922
+ 681941 words of memory out of 5000000
  42350 multiletter control sequences out of 15000+600000
- 686905 words of font info for 186 fonts, out of 8000000 for 9000
+ 686658 words of font info for 183 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
  75i,14n,79p,1098b,622s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmbx10.pfb></home/
@@ -648,9 +643,9 @@ pe1/public/lm/lmsy6.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public
 /lm/lmsy8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmtt10
 .pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on state_dependent_rohmpc.pdf (19 pages, 550196 bytes).
+Output written on state_dependent_rohmpc.pdf (19 pages, 630621 bytes).
 PDF statistics:
- 498 PDF objects out of 1000 (max. 8388607)
+ 509 PDF objects out of 1000 (max. 8388607)
  132 named destinations out of 1000 (max. 500000)
  29398 words of extra memory for PDF output out of 29859 (max. 10000000)
 

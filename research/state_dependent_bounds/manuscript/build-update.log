@@ -85,27 +85,23 @@ onts/enc/dvips/lm/lm-rm.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvip
 s/lm/lm-mathit.enc}{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-m
 athsy.enc}] [2{/home/satyam/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathex
 .enc}] [3] [4] [5] [6] [7] [8] [9] [10]
-(/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd) [11]
-Overfull \hbox (10.73955pt too wide) in paragraph at lines 499--517
-\T1/lmr/m/n/10.95 (-20) centered acceleration disturbance components 7--9 are s
-caled. Other process-disturbance components,
-[12] [13 <./falcon_tube_comparison.png (PNG copy)>] [14] [15] [16] [17]
-[18] [19] (state_dependent_rohmpc.aux) )
-(see the transcript file for additional information)</home/satyam/.miktex/texmf
-s/install/fonts/type1/public/lm/lmbx10.pfb></home/satyam/.miktex/texmfs/install
-/fonts/type1/public/lm/lmbx12.pfb></home/satyam/.miktex/texmfs/install/fonts/ty
-pe1/public/lm/lmex10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/publi
-c/lm/lmmi10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi
-6.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi8.pfb></ho
-me/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr10.pfb></home/satyam/
-.miktex/texmfs/install/fonts/type1/public/lm/lmr12.pfb></home/satyam/.miktex/te
-xmfs/install/fonts/type1/public/lm/lmr17.pfb></home/satyam/.miktex/texmfs/insta
-ll/fonts/type1/public/lm/lmr6.pfb></home/satyam/.miktex/texmfs/install/fonts/ty
-pe1/public/lm/lmr8.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/
-lm/lmri10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmsy10
-.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmsy6.pfb></hom
-e/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmsy8.pfb></home/satyam/.
-miktex/texmfs/install/fonts/type1/public/lm/lmtt10.pfb></home/satyam/.miktex/te
-xmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on state_dependent_rohmpc.pdf (19 pages, 550196 bytes).
+(/home/satyam/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd) [11] [12] [13 <./f
+alcon_tube_comparison.pdf>] [14] [15] [16] [17] [18] [19]
+(state_dependent_rohmpc.aux) )</home/satyam/.miktex/texmfs/install/fonts/type1/
+public/lm/lmbx10.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm
+/lmbx12.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmex10.p
+fb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi10.pfb></home
+/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmmi6.pfb></home/satyam/.m
+iktex/texmfs/install/fonts/type1/public/lm/lmmi8.pfb></home/satyam/.miktex/texm
+fs/install/fonts/type1/public/lm/lmr10.pfb></home/satyam/.miktex/texmfs/install
+/fonts/type1/public/lm/lmr12.pfb></home/satyam/.miktex/texmfs/install/fonts/typ
+e1/public/lm/lmr17.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/
+lm/lmr6.pfb></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmr8.pfb
+></home/satyam/.miktex/texmfs/install/fonts/type1/public/lm/lmri10.pfb></home/s
+atyam/.miktex/texmfs/install/fonts/type1/public/lm/lmsy10.pfb></home/satyam/.mi
+ktex/texmfs/install/fonts/type1/public/lm/lmsy6.pfb></home/satyam/.miktex/texmf
+s/install/fonts/type1/public/lm/lmsy8.pfb></home/satyam/.miktex/texmfs/install/
+fonts/type1/public/lm/lmtt10.pfb></home/satyam/.miktex/texmfs/install/fonts/typ
+e1/public/amsfonts/symbols/msbm10.pfb>
+Output written on state_dependent_rohmpc.pdf (19 pages, 630621 bytes).
 Transcript written on state_dependent_rohmpc.log.

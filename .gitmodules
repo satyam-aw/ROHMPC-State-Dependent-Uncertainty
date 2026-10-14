@@ -37,3 +37,6 @@
 [submodule "src/catkin_ws/src/simple_sim"]
 	path = src/catkin_ws/src/simple_sim
 	url = git@github.com:dbenders1/simple_sim.git
+[submodule "src/interval-mpc"]
+	path = src/interval-mpc
+	url = https://github.com/satyam-aw/interval-mpc.git

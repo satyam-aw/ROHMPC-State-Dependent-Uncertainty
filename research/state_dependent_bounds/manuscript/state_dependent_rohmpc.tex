@@ -19,9 +19,9 @@
 \newcommand{\sym}{\operatorname{sym}}
 \newcommand{\cW}{\mathcal W}
 \newcommand{\cD}{\mathcal D}
-\title{State-Dependent Uncertainty Bounds for Robust Output-Feedback MPC\\\large Derivation and a Falcon Certificate-Reuse Numerical Example}
-\author{Research draft}
-\date{23 September 2026}
+\title{State-Dependent Uncertainty Bounds for Robust Output-Feedback MPC\\\large Derivation and a Falcon Certificate-Reuse Numerical Illustration}
+\author{Satyam Awasthi}
+\date{9 October 2026}
 \begin{document}
 \maketitle
 % Hidden in sharing draft; change false to true to restore.
@@ -49,7 +49,7 @@ y &= Cx+F\eta, &\eta&\in\mathcal N,\\
 \dot z&=f_0(z,v), & u&=v+K(\hat x-z).
 \end{align}
 \end{subequations}
-Here $x,\hat x,z\in\R^n$ and $u,v\in\R^{n_u}$; $v$ is the nominal control input, $E_0\in\R^{n\times m}$ maps process-disturbance components into the state dynamics, and $\mathcal W(x,u)\subset\R^m$ describes their admissible values at the current state and input. The physical process disturbance is $d=E_0w_x$. Measurement noise belongs to the fixed bounded set $\mathcal N$, and $L$ is a fixed observer gain. The nominal model $f_0$ includes any identified constant bias, so $w_x$ represents the centered residual uncertainty.
+Here $x,\hat x,z\in\R^n$ and $u,v\in\R^{n_u}$; $v$ is the nominal control input, $E_0\in\R^{n\times m}$ maps process-disturbance components into the state dynamics, and $\mathcal W(x,u)\subset\R^m$ describes their admissible values at the current state and input. The physical process disturbance is $d=E_0w_x$. Measurement noise belongs to a fixed, nonempty compact set $\mathcal N$, and $L$ is a fixed observer gain. The nominal model $f_0$ includes any identified constant bias, so $w_x$ represents the centered residual uncertainty.
 
 We assume a global baseline box encloses the process uncertainty on the operating region under consideration:
 \[
@@ -58,7 +58,7 @@ We assume a global baseline box encloses the process uncertainty on the operatin
 \cW_0=\{w\in\R^m:|w_j|\le\bar w_j,\ j=1,\ldots,m\},\quad\bar w_j>0.
 \]
 The local sets $\mathcal W(x,u)$ specify the state--input dependence. Their containment in $\cW_0$ permits use of a global baseline certificate. Section III-B introduces the particular family of local sets used to obtain an explicit certificate reduction.
-Let $P=P_\delta\succ0$, $X=P^{-1}$, and $T^\top T=P$. Define
+We use a shared constant metric $P=P_\delta\succ0$ for the estimation error $e$ and the tracking error $\delta$, with $X=P^{-1}$ and $T^\top T=P$. Its induced norm satisfies $\norm e_P=\sqrt{e^\top Pe}$; the same definition applies to the other error vectors. Define
 \begin{equation}
 e=x-\hat x,\quad \delta=\hat x-z,\quad V_e=e^\top Pe,\quad
 V_e\le R,\quad \norm{\delta}_P\le s.
@@ -276,7 +276,7 @@ The local uncertainty model specifies $a(x)$, while the predicted state and radi
 A separate-norm construction can be more conservative because it sums individually maximized contributions and need not recover the original SDP radius at $a=1$. Appendix~\ref{app:separate-norm} gives this comparison using the same model, metric, and gains.
 \section{Robust Output-Feedback MPC}
 \subsection{Coupled tube dynamics}
-Suppose the tracking contraction condition holds along every state--input segment joining $(z,v)$ to $(\hat x,v+K(\hat x-z))$ in the certified domain:
+With the Jacobians $A=\partial f_0/\partial x$ and $B=\partial f_0/\partial u$, suppose the tracking contraction condition holds along every state--input segment joining $(z,v)$ to $(\hat x,v+K(\hat x-z))$ in the certified domain:
 \begin{equation}
 (A+BK)^\top P+P(A+BK)\preceq-2\rho P,\qquad\rho>0.\label{eq:tracking-contraction}
 \end{equation}
@@ -475,13 +475,13 @@ The horizon-cost decrease in~\eqref{eq:decrease} bounds the accumulated nominal 
 \[
 \norm{x-x_{\rm ref}}_P\le\norm{z-x_{\rm ref}}_P+\sqrt R+s.
 \]
-Consequently, if the applied nominal trajectory converges to $x_{\rm ref}$, then
+Define the applied nominal signal by $z^{\rm app}_{t+\tau}:=z_{\tau\mid t}$ for sampling instants $t$ and $0\le\tau<h$. This signal may jump when the optimizer recenters the nominal state. Consequently, if $z^{\rm app}_t\to x_{\rm ref}$ as physical time tends to infinity, then
 \[
 \limsup_{t\to\infty}\norm{x_{t}-x_{\rm ref}}_P
 \le\sqrt{R_{\max}}+s_{\max},
 \]
 where $t$ denotes continuous time. Nominal convergence is an additional condition here; it is not established by the cost-decrease inequality alone.
-\section{Numerical Example: Falcon Model}
+\section{Numerical Illustration: Falcon Model}
 \subsection{Model and reproduced offline design}
 The example uses the repository \cite{rohmpc} and the saved Falcon design from 10 September 2026. The 12-state model consists of position, attitude, translational velocity, and body angular velocity, with four rotor inputs. The nominal translational drag matrix is zero in this instance. Its Jacobians are therefore independent of translational velocity; this does not restrict the controller to hovering. The velocity domain is $[-2,2]^3$ m/s, giving $v_{\max}=\sqrt{12}$ m/s.
 
@@ -498,18 +498,23 @@ D(a)&=\diag(I_6,aI_3,I_3).
 \end{aligned}
 \]
 The scaled disturbance components enter the translational acceleration equations.
-Only the centered acceleration disturbance components 7--9 are scaled. Other process-disturbance components, measurement noise, and the nominal bias remain unchanged. We use $\beta=0.25$ and the velocity law in Section III-C. This is a synthetic uncertainty model, not a new identification or UQ result. The experiment reuses the saved $X,P,L,K,W,H,\lambda$ and solves no new SDP.
+Only the centered acceleration disturbance components 7--9 are scaled. The remaining process components, measurement noise, and nominal bias retain their baseline values. We use $\beta=0.25$ and the velocity law in Section III-C. This is a synthetic uncertainty model, not a new identification or UQ result. The experiment reuses the saved $X,P,L,K,W,H,\lambda$ and solves no new SDP.
 \begin{table}[htbp]\centering
 \caption{Saved certificate and local-envelope parameters (rounded).}
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lr}\toprule
 Quantity & Value\\\midrule
 Observer decay coefficient $\lambda$ & 0.497029\\
-Original uncalibrated $\epsilon$ & 0.07442638619\\
+Original radius $\epsilon$ & 0.07442638619\\
 Global forcing $q_0$ & 0.002753187883\\
 $g(1)$ & 0.00148773\\
 $g(\beta)$ & 0.00104178\\
 $\Delta=0.99[g(1)-g(\beta)]$ & 0.000441487\\
 $q(\beta)$ & 0.0023117\\
+Tracking contraction rate $\rho$ & 1.3\\
+Observer coupling factor $\gamma$ & 6.5\\
+Noise allowance $b_\eta$ & 0.0263274351963\\
+Velocity conversion factor $c_v$ & 3.49394763679\\
 Condition number of $Q$ & 3474.67\\\bottomrule
 \end{tabular}\label{tab:parameters}
 \end{table}
@@ -527,8 +532,8 @@ Tracking radius $s$ & 0.392384 & 0.367532\\\bottomrule
 \end{table}
 The final estimation-radius reduction is $100(1-r_{\rm local}/\epsilon)=6.68019\%$. This is neither a time-average improvement nor a universal performance guarantee. The speed schedule is not a dynamically feasible quadrotor trajectory, and no MPC optimization or closed-loop plant simulation is performed.
 \begin{figure}[htbp]\centering
-\includegraphics[width=0.96\linewidth]{falcon_tube_comparison.png}
-\caption{Recorded tube-ODE experiment with a prescribed low/high/low nominal-speed schedule. The figure is copied from the saved run, not generated by a closed-loop simulator.}\label{fig:tubes}
+\includegraphics[width=0.96\linewidth]{falcon_tube_comparison.pdf}
+\caption{Tube-ODE propagation experiment with a prescribed low/high/low nominal-speed profile. The curves are replotted from the saved trajectory data; no closed-loop simulator is used.}\label{fig:tubes}
 \end{figure}
 The earlier separate-norm prototype produced a global equilibrium radius of approximately 0.105718 and a final local radius of 0.0979251, both above the original 0.0744264. These values belong to a different bound construction and do not indicate empirical calibration of the original $\epsilon$. The quadratic-envelope approach restores a baseline-equivalent comparison.
 
@@ -550,7 +555,7 @@ Sampled nonlinear derivative excess & $-0.00229595$\\\bottomrule
 The saved feasibility tolerance is $10^{-6}$. Small positive residuals mean feasibility within that numerical tolerance, not exact semidefinite feasibility. The convex-chord argument covers intermediate scales analytically only conditional on exact baseline inequalities. Finite Jacobian and nonlinear samples do not prove the domain-wide inequalities required in Assumption~\ref{ass:domain}. No closed-loop feasibility, safety, or stability claim for Falcon follows from these tests.
 
 \section{Conclusion}
-A fixed observer certificate can support locally reduced process forcing through a Schur-complement envelope construction. Coupling this forcing to a tracking radius yields a candidate state-dependent output-feedback MPC formulation with conditional recursive-feasibility and safety guarantees. The Falcon radius experiment demonstrates a smaller local bound relative to a baseline-equivalent global propagation. Remaining work is to certify the continuous domain and numerical margins, validate the local uncertainty model, construct compatible nonempty terminal ingredients, and then implement and evaluate the closed-loop controller.
+A fixed observer certificate can support locally reduced process forcing through a Schur-complement envelope construction. Coupling this forcing to a tracking radius yields a state-dependent output-feedback MPC formulation with recursive feasibility and robust constraint satisfaction under the stated assumptions. The Falcon radius experiment demonstrates a smaller local bound relative to a baseline-equivalent global propagation. Remaining work is to certify the continuous domain and numerical margins, validate the local uncertainty model, construct compatible nonempty terminal ingredients, and then implement and evaluate the closed-loop controller.
 
 \begin{thebibliography}{9}
 \bibitem{kohler2021} J. K\"ohler, M. A. M\"uller, and F. Allg\"ower,
@@ -679,7 +684,7 @@ For fixed $z,v,\delta$, parameterize the straight-line state--input segment by
 x_\theta=z+\theta\delta,\qquad
 u_\theta=v+\theta K\delta,\qquad 0\le\theta\le1.
 \]
-Here $\theta$ parameterizes a segment in state--input space, not time. Its endpoints are $(z,v)$ and $(\hat x,u)$. With $A=\partial f_0/\partial x$ and $B=\partial f_0/\partial u$, integration along this segment yields
+Here $\theta$ parameterizes a segment in state--input space, not time. Its endpoints are $(z,v)$ and $(\hat x,u)$. Using the Jacobians defined in Section IV-A, integration along this segment yields
 \begin{align}
 f_0(\hat x,u)-f_0(z,v)
 &=\int_0^1\bigl[A(x_\theta,u_\theta)+B(x_\theta,u_\theta)K\bigr]\delta\,d\theta\\
